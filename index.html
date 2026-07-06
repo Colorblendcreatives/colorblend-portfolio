@@ -741,7 +741,7 @@
 
 <!-- EmailJS SDK: needed once you wire up the contact form. See setup notes provided separately. -->
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
 <script>
   lucide.createIcons();
 
@@ -797,39 +797,39 @@
     });
   });
 
-  // ===== Contact form: EmailJS setup =====
-  // 1. Create a free account at emailjs.com
-  // 2. Add an Email Service (Gmail), connect it with an App Password
-  // 3. Create TWO templates:
-  //      a) "Notify me" template  -> sent to colorblendcreative@gmail.com, shows the visitor's message
-  //      b) "Auto-reply" template -> sent to the visitor's own email, confirming you got their message
-  // 4. Fill in your Public Key, Service ID, and the two Template IDs below.
-  emailjs.init("YOUR_PUBLIC_KEY");
-
-  const EMAILJS_SERVICE_ID = "YOUR_SERVICE_ID";
-  const EMAILJS_NOTIFY_TEMPLATE_ID = "YOUR_NOTIFY_TEMPLATE_ID";
-  const EMAILJS_AUTOREPLY_TEMPLATE_ID = "YOUR_AUTOREPLY_TEMPLATE_ID";
-
   const form = document.getElementById('contactForm');
   const submitBtn = document.getElementById('submitBtn');
+  const MAILER_ENDPOINT = 'https://colorblend-portfolio.vercel.app/api/send-mail';
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     submitBtn.textContent = 'Sending...';
     submitBtn.disabled = true;
 
-    // Send the notification email to you first
-    emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_NOTIFY_TEMPLATE_ID, form)
-      .then(() => {
-        // Then send the auto-reply confirmation to the visitor
-        return emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_AUTOREPLY_TEMPLATE_ID, form);
-      })
-      .then(() => {
-        submitBtn.textContent = "Thanks, I'll be in touch";
-        form.reset();
+    const payload = {
+      name: form.name.value,
+      email: form.email.value,
+      company: form.company.value,
+      budget: form.budget.value,
+      message: form.message.value,
+    };
+
+    fetch(MAILER_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          submitBtn.textContent = "Thanks, I'll be in touch";
+          form.reset();
+        } else {
+          throw new Error(data.error || 'Unknown error');
+        }
       })
       .catch((err) => {
-        console.error('EmailJS error:', err);
+        console.error('Mailer error:', err);
         submitBtn.textContent = 'Something went wrong, try again';
         submitBtn.disabled = false;
       });
