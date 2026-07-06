@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Colorblend Creative — Websites & Business Systems</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          primary: '#1B4FD8',
+          'primary-mid': '#3B6FFF',
+          'primary-dark': '#1440B8',
+          tint: '#EEF2FF',
+          'tint-2': '#F4F6FB',
+          border: '#E2E6F0',
+          foreground: '#0F1623',
+          muted: '#6B7280',
+        },
+        fontFamily: {
+          sans: ['Roboto', 'sans-serif'],
+        },
+      },
+    },
+  };
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Roboto', sans-serif; color: #0F1623; }
+  .shadow-lift { box-shadow: 0 20px 45px -15px rgba(20, 64, 184, 0.25); }
+  .shadow-soft { box-shadow: 0 8px 24px -8px rgba(15, 22, 35, 0.08); }
+  .reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+  .img-placeholder {
+    display: flex; align-items: center; justify-content: center;
+    width: 100%; height: 100%;
+    border: 2px dashed #E2E6F0; background: #EEF2FF; color: #6B7280;
+    font-size: 14px; text-align: center; padding: 8px;
+  }
+  .faq-panel { max-height: 0; overflow: hidden; transition: max-height .4s ease; }
+  .faq-panel.open { max-height: 300px; }
+</style>
+</head>
+<body class="bg-white text-foreground">
+
+<!-- ============ NAV ============ -->
+<header id="nav" class="fixed top-0 inset-x-0 z-50 transition-all duration-300">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8 h-16 flex items-center justify-between">
+    <a href="#top" class="flex items-center gap-2 font-semibold tracking-tight">
+      <!-- Put your logo file next to this HTML file and name it logo.png (or update the src below) -->
+      <img src="images/logo.jpg" alt="Colorblend Creative logo" class="w-8 h-8 rounded-lg object-contain" />
+      <span class="text-[15px]">Colorblend Creative</span>
+    </a>
+    <nav class="hidden md:flex items-center gap-8 text-sm text-muted">
+      <a href="#work" class="hover:text-foreground transition-colors">Work</a>
+      <a href="#services" class="hover:text-foreground transition-colors">Services</a>
+      <a href="#about" class="hover:text-foreground transition-colors">About</a>
+      <a href="#process" class="hover:text-foreground transition-colors">Process</a>
+      <a href="#faq" class="hover:text-foreground transition-colors">FAQ</a>
+    </nav>
+    <a href="#contact" class="hidden md:inline-flex items-center gap-2 rounded-full bg-foreground text-white px-4 py-2 text-sm font-medium hover:bg-primary transition-colors">
+      Contact me →
+    </a>
+    <button id="menuBtn" class="md:hidden p-2 -mr-2" aria-label="Toggle menu">☰</button>
+  </div>
+  <div id="mobileMenu" class="hidden md:hidden border-t border-border bg-white">
+    <div class="px-5 py-4 flex flex-col gap-3">
+      <a href="#work" class="py-2">Work</a>
+      <a href="#services" class="py-2">Services</a>
+      <a href="#about" class="py-2">About</a>
+      <a href="#process" class="py-2">Process</a>
+      <a href="#faq" class="py-2">FAQ</a>
+      <a href="#contact" class="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-foreground text-white px-4 py-3 text-sm font-medium">Contact me →</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ HERO ============ -->
+<section id="top" class="relative pt-32 sm:pt-40 pb-20 sm:pb-28 overflow-hidden">
+  <div aria-hidden class="absolute inset-x-0 top-0 h-[640px] -z-10"
+       style="background: radial-gradient(60% 55% at 50% 0%, #EEF2FF 0%, rgba(238,242,255,0) 70%);"></div>
+  <div class="mx-auto max-w-4xl px-5 sm:px-8 text-center">
+    <div class="inline-flex items-center gap-2 rounded-full border border-border bg-white px-3 py-1.5 text-xs text-muted">
+      <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+      Now booking new projects for Q2 2026
+    </div>
+    <h1 class="mt-6 text-[40px] leading-[1.08] sm:text-6xl lg:text-[68px] font-bold tracking-tight" style="letter-spacing:-0.03em;">
+      Websites and business systems that help you <span class="text-primary">win more clients</span>.
+    </h1>
+    <p class="mt-6 max-w-2xl mx-auto text-lg text-muted leading-relaxed">
+      Colorblend Creative designs and builds professional websites, client portals, dashboards and custom
+      web applications for businesses that want to look and operate like the best in their field.
+    </p>
+    <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+      <a href="#contact" class="group inline-flex items-center gap-2 rounded-full bg-primary text-white px-6 py-3.5 text-sm font-medium shadow-lift hover:bg-primary-dark transition-all hover:-translate-y-0.5">
+        Book a Free Consultation
+      </a>
+      <a href="#work" class="inline-flex items-center gap-2 rounded-full border border-border bg-white text-foreground px-6 py-3.5 text-sm font-medium hover:border-foreground/30 transition-colors">
+        View My Work
+      </a>
+    </div>
+    <div class="mt-10 flex items-center justify-center gap-6 text-xs text-muted">
+      <div class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-primary"></i> Reply within 24h</div>
+      <div class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-primary"></i> Fixed-scope proposals</div>
+    </div>
+
+    <!-- Stat row instead of a hero image -->
+    <div class="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto">
+      <div class="rounded-2xl border border-border bg-white shadow-soft p-6 text-left">
+        <div class="text-xs text-muted">Projects delivered</div>
+        <div class="mt-1 text-lg font-semibold">30+</div>
+        <div class="mt-1 text-xs text-muted">Across industries</div>
+      </div>
+      <div class="rounded-2xl border border-border bg-white shadow-soft p-6 text-left">
+        <div class="text-xs text-muted">Avg. project</div>
+        <div class="mt-1 text-lg font-semibold">3 to 5 weeks</div>
+        <div class="mt-1 text-xs text-muted">From kickoff to launch</div>
+      </div>
+      <div class="rounded-2xl border border-border bg-white shadow-soft p-6 text-left">
+        <div class="text-xs text-muted">Response time</div>
+        <div class="mt-1 text-lg font-semibold">Within 24h</div>
+        <div class="mt-1 text-xs text-muted">On every inquiry</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TRUST STRIP ============ -->
+<section class="border-y border-border bg-tint-2">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8 py-6 flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
+    <div class="flex items-center gap-2 text-sm text-foreground/80"><i data-lucide="check" class="w-4 h-4 text-primary"></i> Custom Web Development</div>
+    <div class="flex items-center gap-2 text-sm text-foreground/80"><i data-lucide="check" class="w-4 h-4 text-primary"></i> UI/UX Design</div>
+    <div class="flex items-center gap-2 text-sm text-foreground/80"><i data-lucide="check" class="w-4 h-4 text-primary"></i> Business Systems</div>
+    <div class="flex items-center gap-2 text-sm text-foreground/80"><i data-lucide="check" class="w-4 h-4 text-primary"></i> Responsive Websites</div>
+    <div class="flex items-center gap-2 text-sm text-foreground/80"><i data-lucide="check" class="w-4 h-4 text-primary"></i> Fast Delivery</div>
+  </div>
+</section>
+
+<!-- ============ PROJECTS ============ -->
+<section id="work" class="py-24 sm:py-32">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8">
+    <div class="max-w-3xl reveal">
+      <div class="text-xs uppercase tracking-[0.18em] text-primary font-medium">Selected Work</div>
+      <h2 class="mt-3 text-3xl sm:text-5xl font-bold tracking-tight" style="letter-spacing:-0.03em;">
+        Real projects for real businesses.
+      </h2>
+      <p class="mt-4 text-lg text-muted leading-relaxed">
+        A look at recent work across industries, from SaaS to crypto to ecommerce. Click any project to visit the live site.
+      </p>
+    </div>
+
+    <div class="mt-14 grid gap-8 md:gap-10 md:grid-cols-2" id="projectsGrid">
+      <!-- Project 1: Quotely -->
+      <!-- Replace href="#" with the live Quotely URL -->
+      <a href="https://quotely.com.ng" target="_blank" rel="noopener" class="group reveal block rounded-3xl border border-border bg-white overflow-hidden hover:shadow-lift transition-all duration-500 hover:-translate-y-1">
+        <div class="relative overflow-hidden aspect-[16/11] bg-tint">
+          <img src="images/quotely.webp" alt="Quotely" class="w-full h-full object-cover" />
+          <div class="absolute top-4 left-4 text-[11px] font-medium tracking-wide uppercase px-2.5 py-1 rounded-full bg-primary text-white">Live Product</div>
+        </div>
+        <div class="p-7 sm:p-9">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <h3 class="text-2xl sm:text-3xl font-bold">Quotely</h3>
+              <div class="mt-1 text-sm text-muted">SaaS for service businesses</div>
+            </div>
+            <i data-lucide="arrow-up-right" class="w-5 h-5 text-muted group-hover:text-primary transition-colors"></i>
+          </div>
+          <dl class="mt-6 space-y-4 text-sm">
+            <div>
+              <dt class="text-xs uppercase tracking-wider text-muted">Challenge</dt>
+              <dd class="mt-1 text-foreground/90">Service businesses were losing deals because quoting felt slow, inconsistent and unprofessional.</dd>
+            </div>
+            <div>
+              <dt class="text-xs uppercase tracking-wider text-muted">Solution</dt>
+              <dd class="mt-1 text-foreground/90">A multi-tenant quotation platform with branded PDFs, client portals, follow-ups and analytics, built end to end.</dd>
+            </div>
+          </dl>
+          <div class="mt-6 flex flex-wrap gap-2">
+            <span class="text-xs px-2.5 py-1 rounded-full bg-tint text-primary-dark">PHP</span>
+            <span class="text-xs px-2.5 py-1 rounded-full bg-tint text-primary-dark">MySQL</span>
+            <!-- <span class="text-xs px-2.5 py-1 rounded-full bg-tint text-primary-dark">Tailwind</span>
+            <span class="text-xs px-2.5 py-1 rounded-full bg-tint text-primary-dark">Alpine.js</span> -->
+          </div>
+          <div class="mt-6 pt-6 border-t border-border">
+            <div class="text-xs uppercase tracking-wider text-muted">Result</div>
+            <div class="mt-1 font-medium text-foreground">Onboarded businesses in early access.</div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Project 2: Noblebabies & Bumps -->
+      <!-- Replace href="#" with the live site URL -->
+      <a href="https://dev-noblebabiesandbump.pantheonsite.io/" target="_blank" rel="noopener" class="group reveal block rounded-3xl border border-border bg-white overflow-hidden hover:shadow-lift transition-all duration-500 hover:-translate-y-1">
+        <div class="relative overflow-hidden aspect-[16/11] bg-tint">
+          <img src="images/noblebabies.webp" alt="Noblebabies & Bumps" class="w-full h-full object-cover" />
+          <div class="absolute top-4 left-4 text-[11px] font-medium tracking-wide uppercase px-2.5 py-1 rounded-full bg-tint text-primary-dark">Client Project</div>
+        </div>
+        <div class="p-7 sm:p-9">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <h3 class="text-2xl sm:text-3xl font-bold">Noblebabies & Bumps</h3>
+              <div class="mt-1 text-sm text-muted">Ecommerce for baby & maternity products</div>
+            </div>
+            <i data-lucide="arrow-up-right" class="w-5 h-5 text-muted group-hover:text-primary transition-colors"></i>
+          </div>
+          <dl class="mt-6 space-y-4 text-sm">
+            <div>
+              <dt class="text-xs uppercase tracking-wider text-muted">Challenge</dt>
+              <dd class="mt-1 text-foreground/90">The client needed a full online store for baby and maternity products, built from scratch with no existing site to work from.</dd>
+            </div>
+            <div>
+              <dt class="text-xs uppercase tracking-wider text-muted">Solution</dt>
+              <dd class="mt-1 text-foreground/90">Designed and built the entire store on WordPress, from product catalog and checkout to layout and branding.</dd>
+            </div>
+          </dl>
+          <div class="mt-6 flex flex-wrap gap-2">
+            <span class="text-xs px-2.5 py-1 rounded-full bg-tint text-primary-dark">WordPress</span>
+            <span class="text-xs px-2.5 py-1 rounded-full bg-tint text-primary-dark">WooCommerce</span>
+            <span class="text-xs px-2.5 py-1 rounded-full bg-tint text-primary-dark">Elementor</span>
+          </div>
+          <div class="mt-6 pt-6 border-t border-border">
+            <div class="text-xs uppercase tracking-wider text-muted">Result</div>
+            <div class="mt-1 font-medium text-foreground">A fully functional online store, live and ready to sell.</div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Project 3: Buffpepe -->
+      <!-- Replace href="#" with the live site URL -->
+      <a href="https://buffpepe.io/" target="_blank" rel="noopener" class="group reveal block rounded-3xl border border-border bg-white overflow-hidden hover:shadow-lift transition-all duration-500 hover:-translate-y-1">
+        <div class="relative overflow-hidden aspect-[16/11] bg-tint">
+          <img src="images/buffpepe.webp" alt="Buffpepe" class="w-full h-full object-cover" />
+          <div class="absolute top-4 left-4 text-[11px] font-medium tracking-wide uppercase px-2.5 py-1 rounded-full bg-tint text-primary-dark">Client Project</div>
+        </div>
+        <div class="p-7 sm:p-9">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <h3 class="text-2xl sm:text-3xl font-bold">Buffpepe</h3>
+              <div class="mt-1 text-sm text-muted">Memecoin marketing landing page</div>
+            </div>
+            <i data-lucide="arrow-up-right" class="w-5 h-5 text-muted group-hover:text-primary transition-colors"></i>
+          </div>
+          <dl class="mt-6 space-y-4 text-sm">
+            <div>
+              <dt class="text-xs uppercase tracking-wider text-muted">Challenge</dt>
+              <dd class="mt-1 text-foreground/90">Needed a fast, attention-grabbing landing page to promote the coin and drive people to buy in.</dd>
+            </div>
+            <div>
+              <dt class="text-xs uppercase tracking-wider text-muted">Solution</dt>
+              <dd class="mt-1 text-foreground/90">Built a bold, high-energy single-page site with tokenomics, roadmap and social links designed to convert visitors into holders.</dd>
+            </div>
+          </dl>
+          <div class="mt-6 flex flex-wrap gap-2">
+            <span class="text-xs px-2.5 py-1 rounded-full bg-tint text-primary-dark">HTML</span>
+            <span class="text-xs px-2.5 py-1 rounded-full bg-tint text-primary-dark">CSS</span>
+            <span class="text-xs px-2.5 py-1 rounded-full bg-tint text-primary-dark">JavaScript</span>
+          </div>
+          <div class="mt-6 pt-6 border-t border-border">
+            <div class="text-xs uppercase tracking-wider text-muted">Result</div>
+            <div class="mt-1 font-medium text-foreground">Live landing page used for the coin's community launch.</div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Project 4: Saffrongas -->
+      <!-- Replace href="#" with the live site URL -->
+      <a href="https://colorblendcreatives.github.io/Saffrongas/" target="_blank" rel="noopener" class="group reveal block rounded-3xl border border-border bg-white overflow-hidden hover:shadow-lift transition-all duration-500 hover:-translate-y-1">
+        <div class="relative overflow-hidden aspect-[16/11] bg-tint">
+          <img src="images/saffrongas.webp" alt="Saffrongas" class="w-full h-full object-cover" />
+          <div class="absolute top-4 left-4 text-[11px] font-medium tracking-wide uppercase px-2.5 py-1 rounded-full bg-tint text-primary-dark">Client Project</div>
+        </div>
+        <div class="p-7 sm:p-9">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <h3 class="text-2xl sm:text-3xl font-bold">Saffrongas</h3>
+              <div class="mt-1 text-sm text-muted">Gas & energy service website</div>
+            </div>
+            <i data-lucide="arrow-up-right" class="w-5 h-5 text-muted group-hover:text-primary transition-colors"></i>
+          </div>
+          <dl class="mt-6 space-y-4 text-sm">
+            <div>
+              <dt class="text-xs uppercase tracking-wider text-muted">Challenge</dt>
+              <dd class="mt-1 text-foreground/90">Needed a professional website to present their gas service to customers and make it easy to get in touch.</dd>
+            </div>
+            <div>
+              <dt class="text-xs uppercase tracking-wider text-muted">Solution</dt>
+              <dd class="mt-1 text-foreground/90">Hand-coded a clean, fast website from scratch, covering services, pricing and contact, with no page-builder overhead.</dd>
+            </div>
+          </dl>
+          <div class="mt-6 flex flex-wrap gap-2">
+            <span class="text-xs px-2.5 py-1 rounded-full bg-tint text-primary-dark">HTML</span>
+            <span class="text-xs px-2.5 py-1 rounded-full bg-tint text-primary-dark">CSS</span>
+            <span class="text-xs px-2.5 py-1 rounded-full bg-tint text-primary-dark">JavaScript</span>
+          </div>
+          <div class="mt-6 pt-6 border-t border-border">
+            <div class="text-xs uppercase tracking-wider text-muted">Result</div>
+            <div class="mt-1 font-medium text-foreground">A live, professional site representing the business online.</div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Project 5: Quickplaycoin -->
+      <!-- Replace href="#" with the live site URL -->
+      <a href="https://quickplaycoin.xyz/" target="_blank" rel="noopener" class="group reveal block rounded-3xl border border-border bg-white overflow-hidden hover:shadow-lift transition-all duration-500 hover:-translate-y-1">
+        <div class="relative overflow-hidden aspect-[16/11] bg-tint">
+          <img src="images/quickplaycoin.webp" alt="Quickplaycoin" class="w-full h-full object-cover" />
+          <div class="absolute top-4 left-4 text-[11px] font-medium tracking-wide uppercase px-2.5 py-1 rounded-full bg-tint text-primary-dark">Client Project</div>
+        </div>
+        <div class="p-7 sm:p-9">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <h3 class="text-2xl sm:text-3xl font-bold">Quickplaycoin</h3>
+              <div class="mt-1 text-sm text-muted">Memecoin marketing landing page</div>
+            </div>
+            <i data-lucide="arrow-up-right" class="w-5 h-5 text-muted group-hover:text-primary transition-colors"></i>
+          </div>
+          <dl class="mt-6 space-y-4 text-sm">
+            <div>
+              <dt class="text-xs uppercase tracking-wider text-muted">Challenge</dt>
+              <dd class="mt-1 text-foreground/90">Needed a landing page to advertise the coin and build early hype ahead of launch.</dd>
+            </div>
+            <div>
+              <dt class="text-xs uppercase tracking-wider text-muted">Solution</dt>
+              <dd class="mt-1 text-foreground/90">Designed and built a punchy, gaming-themed single-page site highlighting the coin's use case and community links.</dd>
+            </div>
+          </dl>
+          <div class="mt-6 flex flex-wrap gap-2">
+            <span class="text-xs px-2.5 py-1 rounded-full bg-tint text-primary-dark">HTML</span>
+            <span class="text-xs px-2.5 py-1 rounded-full bg-tint text-primary-dark">CSS</span>
+            <span class="text-xs px-2.5 py-1 rounded-full bg-tint text-primary-dark">JavaScript</span>
+          </div>
+          <div class="mt-6 pt-6 border-t border-border">
+            <div class="text-xs uppercase tracking-wider text-muted">Result</div>
+            <div class="mt-1 font-medium text-foreground">Live landing page used to advertise the coin.</div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Sixth project slot: duplicate one of the <a> blocks above and fill in your details if you have one more -->
+    </div>
+  </div>
+</section>
+
+
+<!-- ============ SERVICES ============ -->
+<section id="services" class="py-24 sm:py-32 bg-tint-2 border-y border-border">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8">
+    <div class="max-w-3xl reveal">
+      <div class="text-xs uppercase tracking-[0.18em] text-primary font-medium">Services</div>
+      <h2 class="mt-3 text-3xl sm:text-5xl font-bold tracking-tight" style="letter-spacing:-0.03em;">
+        Everything you need to look, and operate, like the best.
+      </h2>
+      <p class="mt-4 text-lg text-muted leading-relaxed">
+        Design, development and custom systems, tailored to businesses that care about how they show up.
+      </p>
+    </div>
+    <div class="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      <div class="reveal group rounded-2xl border border-border bg-white p-6 hover:border-primary/40 hover:shadow-soft transition-all">
+        <div class="w-11 h-11 rounded-xl bg-tint grid place-items-center text-primary group-hover:bg-primary group-hover:text-white transition-colors"><i data-lucide="layout" class="w-5 h-5"></i></div>
+        <h3 class="mt-5 text-lg font-semibold">Business Websites</h3>
+        <p class="mt-2 text-sm text-muted leading-relaxed">Sites that turn visitors into qualified leads, not just online brochures.</p>
+      </div>
+      <div class="reveal group rounded-2xl border border-border bg-white p-6 hover:border-primary/40 hover:shadow-soft transition-all">
+        <div class="w-11 h-11 rounded-xl bg-tint grid place-items-center text-primary group-hover:bg-primary group-hover:text-white transition-colors"><i data-lucide="rocket" class="w-5 h-5"></i></div>
+        <h3 class="mt-5 text-lg font-semibold">Landing Pages</h3>
+        <p class="mt-2 text-sm text-muted leading-relaxed">High-converting pages built around a single offer and a single action.</p>
+      </div>
+      <div class="reveal group rounded-2xl border border-border bg-white p-6 hover:border-primary/40 hover:shadow-soft transition-all">
+        <div class="w-11 h-11 rounded-xl bg-tint grid place-items-center text-primary group-hover:bg-primary group-hover:text-white transition-colors"><i data-lucide="pen-tool" class="w-5 h-5"></i></div>
+        <h3 class="mt-5 text-lg font-semibold">UI/UX Design</h3>
+        <p class="mt-2 text-sm text-muted leading-relaxed">Interfaces your customers understand instantly and enjoy using.</p>
+      </div>
+      <div class="reveal group rounded-2xl border border-border bg-white p-6 hover:border-primary/40 hover:shadow-soft transition-all">
+        <div class="w-11 h-11 rounded-xl bg-tint grid place-items-center text-primary group-hover:bg-primary group-hover:text-white transition-colors"><i data-lucide="gauge" class="w-5 h-5"></i></div>
+        <h3 class="mt-5 text-lg font-semibold">Custom Dashboards</h3>
+        <p class="mt-2 text-sm text-muted leading-relaxed">See the numbers that actually run your business, in one place.</p>
+      </div>
+      <div class="reveal group rounded-2xl border border-border bg-white p-6 hover:border-primary/40 hover:shadow-soft transition-all">
+        <div class="w-11 h-11 rounded-xl bg-tint grid place-items-center text-primary group-hover:bg-primary group-hover:text-white transition-colors"><i data-lucide="calendar" class="w-5 h-5"></i></div>
+        <h3 class="mt-5 text-lg font-semibold">Booking Systems</h3>
+        <p class="mt-2 text-sm text-muted leading-relaxed">Let clients reserve, pay and reschedule without emailing you.</p>
+      </div>
+      <div class="reveal group rounded-2xl border border-border bg-white p-6 hover:border-primary/40 hover:shadow-soft transition-all">
+        <div class="w-11 h-11 rounded-xl bg-tint grid place-items-center text-primary group-hover:bg-primary group-hover:text-white transition-colors"><i data-lucide="users" class="w-5 h-5"></i></div>
+        <h3 class="mt-5 text-lg font-semibold">Client Portals</h3>
+        <p class="mt-2 text-sm text-muted leading-relaxed">Give clients a branded home for files, quotes and updates.</p>
+      </div>
+      <div class="reveal group rounded-2xl border border-border bg-white p-6 hover:border-primary/40 hover:shadow-soft transition-all">
+        <div class="w-11 h-11 rounded-xl bg-tint grid place-items-center text-primary group-hover:bg-primary group-hover:text-white transition-colors"><i data-lucide="database" class="w-5 h-5"></i></div>
+        <h3 class="mt-5 text-lg font-semibold">PHP / MySQL Development</h3>
+        <p class="mt-2 text-sm text-muted leading-relaxed">Custom back-office tools tailored to how you actually work.</p>
+      </div>
+      <div class="reveal group rounded-2xl border border-border bg-white p-6 hover:border-primary/40 hover:shadow-soft transition-all">
+        <div class="w-11 h-11 rounded-xl bg-tint grid place-items-center text-primary group-hover:bg-primary group-hover:text-white transition-colors"><i data-lucide="refresh-cw" class="w-5 h-5"></i></div>
+        <h3 class="mt-5 text-lg font-semibold">Website Redesign</h3>
+        <p class="mt-2 text-sm text-muted leading-relaxed">Modernize an aging site without losing what already works.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY WORK WITH ME ============ -->
+<section class="py-24 sm:py-32">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8">
+    <div class="max-w-3xl reveal">
+      <div class="text-xs uppercase tracking-[0.18em] text-primary font-medium">Why Work With Me</div>
+      <h2 class="mt-3 text-3xl sm:text-5xl font-bold tracking-tight" style="letter-spacing:-0.03em;">
+        A studio experience, without the studio price tag.
+      </h2>
+    </div>
+    <div class="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="reveal rounded-2xl border border-border p-7 hover:bg-tint-2 transition-colors">
+        <div class="text-primary"><i data-lucide="target" class="w-5 h-5"></i></div>
+        <h3 class="mt-5 text-lg font-semibold">Business-focused</h3>
+        <p class="mt-2 text-sm text-muted leading-relaxed">Design decisions tied to leads, retention and revenue, not trends.</p>
+      </div>
+      <div class="reveal rounded-2xl border border-border p-7 hover:bg-tint-2 transition-colors">
+        <div class="text-primary"><i data-lucide="sparkles" class="w-5 h-5"></i></div>
+        <h3 class="mt-5 text-lg font-semibold">Clean UI</h3>
+        <p class="mt-2 text-sm text-muted leading-relaxed">Restrained, premium interfaces your brand can grow into.</p>
+      </div>
+      <div class="reveal rounded-2xl border border-border p-7 hover:bg-tint-2 transition-colors">
+        <div class="text-primary"><i data-lucide="message-circle" class="w-5 h-5"></i></div>
+        <h3 class="mt-5 text-lg font-semibold">Fast communication</h3>
+        <p class="mt-2 text-sm text-muted leading-relaxed">Clear updates, no ghosting. You always know where the project stands.</p>
+      </div>
+      <div class="reveal rounded-2xl border border-border p-7 hover:bg-tint-2 transition-colors">
+        <div class="text-primary"><i data-lucide="shield-check" class="w-5 h-5"></i></div>
+        <h3 class="mt-5 text-lg font-semibold">Reliable delivery</h3>
+        <p class="mt-2 text-sm text-muted leading-relaxed">Realistic timelines, hit consistently. Launched work, not endless drafts.</p>
+      </div>
+      <div class="reveal rounded-2xl border border-border p-7 hover:bg-tint-2 transition-colors">
+        <div class="text-primary"><i data-lucide="zap" class="w-5 h-5"></i></div>
+        <h3 class="mt-5 text-lg font-semibold">Scalable systems</h3>
+        <p class="mt-2 text-sm text-muted leading-relaxed">Built to grow with you, not rebuilt every twelve months.</p>
+      </div>
+      <div class="reveal rounded-2xl border border-border p-7 hover:bg-tint-2 transition-colors">
+        <div class="text-primary"><i data-lucide="award" class="w-5 h-5"></i></div>
+        <h3 class="mt-5 text-lg font-semibold">Attention to detail</h3>
+        <p class="mt-2 text-sm text-muted leading-relaxed">The small polish that makes a site feel expensive.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section id="about" class="py-24 sm:py-32 bg-tint">
+  <div class="mx-auto max-w-6xl px-5 sm:px-8">
+    <div class="grid lg:grid-cols-12 gap-12 items-start">
+      <div class="lg:col-span-5 reveal">
+        <div class="text-xs uppercase tracking-[0.18em] text-primary font-medium">About</div>
+        <h2 class="mt-3 text-3xl sm:text-5xl font-bold tracking-tight" style="letter-spacing:-0.03em;">
+          A designer who ships. A developer who cares about how it looks.
+        </h2>
+      </div>
+      <div class="lg:col-span-7 reveal">
+        <p class="text-lg leading-relaxed text-foreground/90">
+          I'm the designer and developer behind <span class="font-semibold text-primary-dark">Colorblend Creative</span>.
+          I work solo, which means the person you talk to is the person designing, building and shipping your project.
+        </p>
+        <p class="mt-4 text-lg leading-relaxed text-muted">
+          My most recent build, Quotely, is a live quoting platform now used by more than 15 service businesses.
+          That same care for how a business actually works shows up in every project I take on, from clean
+          interfaces to systems that hold up under real daily use.
+        </p>
+        <div class="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-6">
+          <div>
+            <div class="text-3xl font-bold text-primary-dark">1</div>
+            <div class="mt-1 text-xs text-muted">live SaaS product</div>
+          </div>
+          <div>
+            <div class="text-3xl font-bold text-primary-dark">15+</div>
+            <div class="mt-1 text-xs text-muted">businesses on Quotely</div>
+          </div>
+          <div>
+            <div class="text-3xl font-bold text-primary-dark">5</div>
+            <div class="mt-1 text-xs text-muted">client projects delivered</div>
+          </div>
+          <div>
+            <div class="text-3xl font-bold text-primary-dark">100%</div>
+            <div class="mt-1 text-xs text-muted">solo, end to end</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROCESS ============ -->
+<section id="process" class="py-24 sm:py-32">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8">
+    <div class="max-w-3xl reveal">
+      <div class="text-xs uppercase tracking-[0.18em] text-primary font-medium">Process</div>
+      <h2 class="mt-3 text-3xl sm:text-5xl font-bold tracking-tight" style="letter-spacing:-0.03em;">
+        A calm, predictable path from idea to launch.
+      </h2>
+      <p class="mt-4 text-lg text-muted leading-relaxed">Six steps. Clear deliverables. No surprises.</p>
+    </div>
+    <ol class="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <li class="reveal relative rounded-2xl border border-border bg-white p-7">
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-xl bg-tint grid place-items-center text-primary"><i data-lucide="compass" class="w-5 h-5"></i></div>
+          <div class="text-sm text-muted">Step 01</div>
+        </div>
+        <h3 class="mt-6 text-2xl font-bold">Discover</h3>
+        <p class="mt-2 text-sm text-muted leading-relaxed">Understand your business, goals and audience.</p>
+      </li>
+      <li class="reveal relative rounded-2xl border border-border bg-white p-7">
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-xl bg-tint grid place-items-center text-primary"><i data-lucide="layout" class="w-5 h-5"></i></div>
+          <div class="text-sm text-muted">Step 02</div>
+        </div>
+        <h3 class="mt-6 text-2xl font-bold">Plan</h3>
+        <p class="mt-2 text-sm text-muted leading-relaxed">Scope, sitemap and success metrics.</p>
+      </li>
+      <li class="reveal relative rounded-2xl border border-border bg-white p-7">
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-xl bg-tint grid place-items-center text-primary"><i data-lucide="pen-tool" class="w-5 h-5"></i></div>
+          <div class="text-sm text-muted">Step 03</div>
+        </div>
+        <h3 class="mt-6 text-2xl font-bold">Design</h3>
+        <p class="mt-2 text-sm text-muted leading-relaxed">Wireframes, then premium visual design.</p>
+      </li>
+      <li class="reveal relative rounded-2xl border border-border bg-white p-7">
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-xl bg-tint grid place-items-center text-primary"><i data-lucide="database" class="w-5 h-5"></i></div>
+          <div class="text-sm text-muted">Step 04</div>
+        </div>
+        <h3 class="mt-6 text-2xl font-bold">Develop</h3>
+        <p class="mt-2 text-sm text-muted leading-relaxed">Clean, fast, maintainable build.</p>
+      </li>
+      <li class="reveal relative rounded-2xl border border-border bg-white p-7">
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-xl bg-tint grid place-items-center text-primary"><i data-lucide="rocket" class="w-5 h-5"></i></div>
+          <div class="text-sm text-muted">Step 05</div>
+        </div>
+        <h3 class="mt-6 text-2xl font-bold">Launch</h3>
+        <p class="mt-2 text-sm text-muted leading-relaxed">Deploy, QA and go live with confidence.</p>
+      </li>
+      <li class="reveal relative rounded-2xl border border-border bg-white p-7">
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-xl bg-tint grid place-items-center text-primary"><i data-lucide="life-buoy" class="w-5 h-5"></i></div>
+          <div class="text-sm text-muted">Step 06</div>
+        </div>
+        <h3 class="mt-6 text-2xl font-bold">Support</h3>
+        <p class="mt-2 text-sm text-muted leading-relaxed">Ongoing improvements and reliable maintenance.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ SOCIAL PROOF ============ -->
+<section class="py-24 sm:py-32 bg-foreground text-white relative overflow-hidden">
+  <div aria-hidden class="absolute inset-0 opacity-40"
+       style="background: radial-gradient(60% 60% at 20% 20%, rgba(59,111,255,0.25), transparent 60%), radial-gradient(50% 50% at 90% 80%, rgba(27,79,216,0.35), transparent 60%);"></div>
+  <div class="relative mx-auto max-w-6xl px-5 sm:px-8">
+    <div class="grid lg:grid-cols-12 gap-10 items-center">
+      <div class="lg:col-span-6 reveal">
+        <div class="text-xs uppercase tracking-[0.18em] text-white/60 font-medium">Honest Traction</div>
+        <h2 class="mt-3 text-4xl sm:text-6xl font-bold tracking-tight" style="letter-spacing:-0.03em;">
+          15+ businesses<br /><span class="text-primary-mid">onboarded on Quotely.</span>
+        </h2>
+        <p class="mt-6 text-white/70 text-lg leading-relaxed max-w-md">
+          I don't run placeholder testimonials with invented names. Quotely is real. You can sign up, use it,
+          and talk to the businesses already running quotes through it.
+        </p>
+      </div>
+      <div class="lg:col-span-6 reveal">
+        <div class="rounded-3xl border border-white/10 bg-white/5 backdrop-blur p-8">
+          <p class="text-lg leading-relaxed text-white/90">
+            "Quotely came from watching small service businesses lose deals to slow, clunky quoting. My mission
+            is the same for every client I take on, build the system that quietly wins them more work."
+          </p>
+          <div class="mt-6 flex items-center gap-3 text-sm text-white/60">
+            <div class="w-8 h-8 rounded-full bg-primary grid place-items-center text-xs font-semibold">CC</div>
+            <div>A personal note, not a testimonial.</div>
+          </div>
+        </div>
+        <div class="mt-6 rounded-2xl border border-white/10 bg-primary/20 p-5 text-sm text-white/80">
+          Currently building trust with early clients. <span class="text-white font-medium">Book early access pricing</span> while this window is open.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq" class="py-24 sm:py-32">
+  <div class="mx-auto max-w-4xl px-5 sm:px-8">
+    <div class="max-w-3xl reveal">
+      <div class="text-xs uppercase tracking-[0.18em] text-primary font-medium">FAQ</div>
+      <h2 class="mt-3 text-3xl sm:text-5xl font-bold tracking-tight" style="letter-spacing:-0.03em;">
+        The questions clients usually ask.
+      </h2>
+    </div>
+    <div class="mt-12 divide-y divide-border border-y border-border" id="faqList">
+      <div>
+        <button class="faq-btn w-full py-6 flex items-start justify-between gap-6 text-left">
+          <span class="text-lg sm:text-xl font-medium">How long does a project take?</span>
+          <span class="faq-icon mt-1 w-8 h-8 shrink-0 rounded-full grid place-items-center border border-border">+</span>
+        </button>
+        <div class="faq-panel">
+          <p class="text-muted leading-relaxed max-w-2xl pb-6">Landing pages typically take 1 to 2 weeks. Business websites take 3 to 5 weeks. Custom systems and dashboards range from 6 to 12 weeks depending on scope. You'll get a clear timeline in the proposal.</p>
+        </div>
+      </div>
+      <div>
+        <button class="faq-btn w-full py-6 flex items-start justify-between gap-6 text-left">
+          <span class="text-lg sm:text-xl font-medium">Do you redesign existing websites?</span>
+          <span class="faq-icon mt-1 w-8 h-8 shrink-0 rounded-full grid place-items-center border border-border">+</span>
+        </button>
+        <div class="faq-panel">
+          <p class="text-muted leading-relaxed max-w-2xl pb-6">Yes. I'll audit what's already working, keep the good parts, and rebuild the rest, usually with a measurable lift in speed, clarity and conversions.</p>
+        </div>
+      </div>
+      <div>
+        <button class="faq-btn w-full py-6 flex items-start justify-between gap-6 text-left">
+          <span class="text-lg sm:text-xl font-medium">Can you build custom systems, not just websites?</span>
+          <span class="faq-icon mt-1 w-8 h-8 shrink-0 rounded-full grid place-items-center border border-border">+</span>
+        </button>
+        <div class="faq-panel">
+          <p class="text-muted leading-relaxed max-w-2xl pb-6">Absolutely. Quotely is a full multi-tenant SaaS platform I built and maintain. I also build custom dashboards, booking systems, client portals and internal tools in PHP/MySQL and modern JavaScript.</p>
+        </div>
+      </div>
+      <div>
+        <button class="faq-btn w-full py-6 flex items-start justify-between gap-6 text-left">
+          <span class="text-lg sm:text-xl font-medium">Do you offer maintenance after launch?</span>
+          <span class="faq-icon mt-1 w-8 h-8 shrink-0 rounded-full grid place-items-center border border-border">+</span>
+        </button>
+        <div class="faq-panel">
+          <p class="text-muted leading-relaxed max-w-2xl pb-6">Yes, monthly care plans cover updates, backups, small changes and priority support. Most clients keep me on a retainer after launch.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" class="py-24 sm:py-32 bg-tint-2 border-t border-border">
+  <div class="mx-auto max-w-6xl px-5 sm:px-8">
+    <div class="grid lg:grid-cols-12 gap-14">
+      <div class="lg:col-span-5 reveal">
+        <div class="text-xs uppercase tracking-[0.18em] text-primary font-medium">Contact</div>
+        <h2 class="mt-3 text-4xl sm:text-6xl font-bold tracking-tight" style="letter-spacing:-0.03em;">
+          Let's build something great.
+        </h2>
+        <p class="mt-6 text-lg text-muted leading-relaxed max-w-md">
+          Tell me a little about your business and what you'd like to build. I'll reply within 24 hours with next steps.
+        </p>
+        <div class="mt-10">
+          <a href="mailto:colorblendcreative@gmail.com" class="group flex items-center gap-4 rounded-2xl border border-border bg-white px-5 py-4 hover:border-primary/40 hover:shadow-soft transition-all">
+            <div class="w-10 h-10 rounded-xl bg-tint grid place-items-center text-primary"><i data-lucide="mail" class="w-4 h-4"></i></div>
+            <div class="flex-1">
+              <div class="text-xs uppercase tracking-wider text-muted">Email</div>
+              <div class="text-sm font-medium">colorblendcreative@gmail.com</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="lg:col-span-7 reveal">
+        <form id="contactForm" class="rounded-3xl border border-border bg-white p-6 sm:p-10 shadow-soft">
+          <div class="grid sm:grid-cols-2 gap-5">
+            <div>
+              <label class="block text-xs uppercase tracking-wider text-muted mb-2">Name</label>
+              <input name="name" type="text" placeholder="Your full name" class="w-full h-12 rounded-xl border border-border bg-white px-4 text-sm outline-none focus:border-primary transition-colors" />
+            </div>
+            <div>
+              <label class="block text-xs uppercase tracking-wider text-muted mb-2">Email</label>
+              <input name="email" type="email" placeholder="you@company.com" class="w-full h-12 rounded-xl border border-border bg-white px-4 text-sm outline-none focus:border-primary transition-colors" />
+            </div>
+          </div>
+          <div class="mt-5 grid sm:grid-cols-2 gap-5">
+            <div>
+              <label class="block text-xs uppercase tracking-wider text-muted mb-2">Company</label>
+              <input name="company" type="text" placeholder="Optional" class="w-full h-12 rounded-xl border border-border bg-white px-4 text-sm outline-none focus:border-primary transition-colors" />
+            </div>
+            <div>
+              <label class="block text-xs uppercase tracking-wider text-muted mb-2">Budget</label>
+              <select name="budget" class="w-full h-12 rounded-xl border border-border bg-white px-4 text-sm outline-none focus:border-primary transition-colors">
+                <option>Under $2k</option>
+                <option>$2k to $6k</option>
+                <option>$6k to $15k</option>
+                <option>$15k+</option>
+              </select>
+            </div>
+          </div>
+          <div class="mt-5">
+            <label class="block text-xs uppercase tracking-wider text-muted mb-2">Project details</label>
+            <textarea name="message" rows="5" placeholder="What are you trying to build, and what does success look like?" class="w-full rounded-xl border border-border bg-white p-4 text-sm outline-none focus:border-primary transition-colors resize-none"></textarea>
+          </div>
+          <div class="mt-6 flex items-center justify-between gap-4 flex-wrap">
+            <div class="text-xs text-muted">By sending, you agree to be contacted about your project.</div>
+            <button type="submit" id="submitBtn" class="group inline-flex items-center gap-2 rounded-full bg-primary text-white px-6 py-3.5 text-sm font-medium hover:bg-primary-dark transition-all hover:-translate-y-0.5">
+              Send message →
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="border-t border-border bg-white">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8 py-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+    <div class="flex items-center gap-3">
+      <img src="images/logo.jpg" alt="Colorblend Creative logo" class="w-8 h-8 rounded-lg object-contain" />
+      <div>
+        <div class="text-sm font-semibold">Colorblend Creative</div>
+        <div class="text-xs text-muted">Websites & systems for growing businesses.</div>
+      </div>
+    </div>
+    <nav class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted">
+      <a href="#work" class="hover:text-foreground">Work</a>
+      <a href="#services" class="hover:text-foreground">Services</a>
+      <a href="#about" class="hover:text-foreground">About</a>
+      <a href="#process" class="hover:text-foreground">Process</a>
+      <a href="#faq" class="hover:text-foreground">FAQ</a>
+      <a href="#contact" class="hover:text-foreground">Contact</a>
+    </nav>
+    <div class="flex items-center gap-3 text-muted">
+      <a href="mailto:colorblendcreative@gmail.com" aria-label="Email" class="hover:text-primary"><i data-lucide="mail" class="w-4 h-4"></i></a>
+    </div>
+  </div>
+  <div class="border-t border-border">
+    <div class="mx-auto max-w-7xl px-5 sm:px-8 py-5 text-xs text-muted flex flex-col sm:flex-row items-center justify-between gap-2">
+      <div>© <span id="year"></span> Colorblend Creative. All rights reserved.</div>
+      <div>Colorblend Creative</div>
+    </div>
+  </div>
+</footer>
+
+<!-- EmailJS SDK: needed once you wire up the contact form. See setup notes provided separately. -->
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  lucide.createIcons();
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Mobile menu toggle
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  menuBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+
+  // Nav scroll background
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 8) {
+      nav.classList.add('bg-white/85', 'backdrop-blur-md', 'border-b', 'border-border');
+    } else {
+      nav.classList.remove('bg-white/85', 'backdrop-blur-md', 'border-b', 'border-border');
+    }
+  });
+
+  // Reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach((el) => io.observe(el));
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const panel = btn.nextElementSibling;
+      const icon = btn.querySelector('.faq-icon');
+      const isOpen = panel.classList.contains('open');
+
+      document.querySelectorAll('.faq-panel.open').forEach((p) => {
+        p.classList.remove('open');
+        p.previousElementSibling.querySelector('.faq-icon').textContent = '+';
+        p.previousElementSibling.querySelector('.faq-icon').classList.remove('bg-primary', 'text-white', 'border-primary');
+      });
+
+      if (!isOpen) {
+        panel.classList.add('open');
+        icon.textContent = '−';
+        icon.classList.add('bg-primary', 'text-white', 'border-primary');
+      }
+    });
+  });
+
+  // ===== Contact form: EmailJS setup =====
+  // 1. Create a free account at emailjs.com
+  // 2. Add an Email Service (Gmail), connect it with an App Password
+  // 3. Create TWO templates:
+  //      a) "Notify me" template  -> sent to colorblendcreative@gmail.com, shows the visitor's message
+  //      b) "Auto-reply" template -> sent to the visitor's own email, confirming you got their message
+  // 4. Fill in your Public Key, Service ID, and the two Template IDs below.
+  emailjs.init("YOUR_PUBLIC_KEY");
+
+  const EMAILJS_SERVICE_ID = "YOUR_SERVICE_ID";
+  const EMAILJS_NOTIFY_TEMPLATE_ID = "YOUR_NOTIFY_TEMPLATE_ID";
+  const EMAILJS_AUTOREPLY_TEMPLATE_ID = "YOUR_AUTOREPLY_TEMPLATE_ID";
+
+  const form = document.getElementById('contactForm');
+  const submitBtn = document.getElementById('submitBtn');
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    submitBtn.textContent = 'Sending...';
+    submitBtn.disabled = true;
+
+    // Send the notification email to you first
+    emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_NOTIFY_TEMPLATE_ID, form)
+      .then(() => {
+        // Then send the auto-reply confirmation to the visitor
+        return emailjs.sendForm(EMAILJS_SERVICE_ID, EMAILJS_AUTOREPLY_TEMPLATE_ID, form);
+      })
+      .then(() => {
+        submitBtn.textContent = "Thanks, I'll be in touch";
+        form.reset();
+      })
+      .catch((err) => {
+        console.error('EmailJS error:', err);
+        submitBtn.textContent = 'Something went wrong, try again';
+        submitBtn.disabled = false;
+      });
+  });
+</script>
+
+
+</body>
+</html>
