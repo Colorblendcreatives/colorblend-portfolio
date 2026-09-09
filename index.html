@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Colorblend Creative — Websites & Systems for Growing Businesses</title>
+<title>Colorblend Creative — Web Design & Business Systems</title>
 <link rel="icon" type="image/jpeg" href="images/logo.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,6 +18,7 @@
           paper: '#FFFFFF',
           muted: '#666666',
           line: '#ECECEC',
+          dark: '#1A1A1A',
         },
         fontFamily: {
           sans: ['Inter', 'sans-serif'],
@@ -36,48 +37,97 @@
   .faq-panel { max-height: 0; overflow: hidden; transition: max-height .4s ease; }
   .faq-panel.open { max-height: 500px; }
 
+  /* Auto-scroll carousel */
+  .carousel-track {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding-bottom: 10px;
+  }
+  .carousel-track::-webkit-scrollbar { height: 4px; }
+  .carousel-track::-webkit-scrollbar-track { background: #f1f1f1; }
+  .carousel-track::-webkit-scrollbar-thumb { background: #888; border-radius: 2px; }
+  .carousel-track::-webkit-scrollbar-thumb:hover { background: #555; }
+  .carousel-item { flex-shrink: 0; width: 320px; }
+
+  /* Ajide Victor style - project gallery */
+  .project-gallery {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 60px;
+    align-items: start;
+  }
+  @media (max-width: 1024px) {
+    .project-gallery { grid-template-columns: 1fr; gap: 40px; }
+  }
+
+  .project-preview-container {
+    position: relative;
+    height: 600px;
+    perspective: 1000px;
+  }
+  @media (max-width: 1024px) {
+    .project-preview-container { height: 400px; }
+  }
+
+  .project-preview-card {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #f5f5f5;
+    opacity: 0;
+    transform: translateX(50px) rotateY(20deg);
+    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .project-preview-card.active {
+    opacity: 1;
+    transform: translateX(0) rotateY(0deg);
+    z-index: 10;
+  }
+
+  .project-preview-card.prev {
+    opacity: 0.3;
+    transform: translateX(-50px) rotateY(-20deg);
+    z-index: 5;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .reveal { transition: none; opacity: 1; transform: none; }
   }
-
-  /* Minimalist separator line */
-  .separator { height: 1px; background: #ECECEC; }
 </style>
 </head>
 <body class="bg-paper text-ink">
 
-<!-- ============ NAV: MINIMAL LIKE ROBINSON'S ============ -->
+<!-- ============ NAV ============ -->
 <header id="nav" class="fixed top-0 inset-x-0 z-50 transition-all duration-300 bg-paper">
   <div class="mx-auto max-w-7xl px-5 sm:px-8 h-16 flex items-center justify-between border-b border-line">
-    <!-- Left: Logo + Name -->
     <a href="#top" class="flex items-center gap-3 font-semibold text-sm tracking-tight">
       <img src="images/logo.jpg" alt="Colorblend Creative" class="w-7 h-7 rounded-md object-contain" />
       <span>Colorblend</span>
     </a>
     
-    <!-- Center: Nav links (hidden on mobile) -->
     <nav class="hidden md:flex items-center gap-10 text-sm text-muted">
       <a href="#work" class="hover:text-ink transition-colors">Work</a>
       <a href="#services" class="hover:text-ink transition-colors">Services</a>
       <a href="#about" class="hover:text-ink transition-colors">About</a>
-      <a href="#process" class="hover:text-ink transition-colors">Process</a>
       <a href="#faq" class="hover:text-ink transition-colors">FAQ</a>
     </nav>
 
-    <!-- Right: CTA + Mobile menu -->
     <div class="flex items-center gap-4">
       <a href="#contact" class="hidden md:inline-flex text-sm font-medium hover:text-muted transition-colors">Get in touch</a>
       <button id="menuBtn" class="md:hidden p-2" aria-label="Toggle menu">☰</button>
     </div>
   </div>
 
-  <!-- Mobile menu -->
   <div id="mobileMenu" class="hidden md:hidden border-t border-line bg-paper">
     <div class="px-5 py-4 flex flex-col gap-3 text-sm">
       <a href="#work" class="py-2 hover:text-muted">Work</a>
       <a href="#services" class="py-2 hover:text-muted">Services</a>
       <a href="#about" class="py-2 hover:text-muted">About</a>
-      <a href="#process" class="py-2 hover:text-muted">Process</a>
       <a href="#faq" class="py-2 hover:text-muted">FAQ</a>
       <a href="#contact" class="mt-4 pt-4 border-t border-line font-medium hover:text-muted">Get in touch</a>
     </div>
@@ -86,133 +136,205 @@
 
 <main>
 
-<!-- ============ HERO: BOLD, MINIMAL ============ -->
-<section id="top" class="pt-32 sm:pt-40 pb-24 sm:pb-32 px-5 sm:px-8">
-  <div class="mx-auto max-w-4xl">
-    <!-- Status badge -->
-    <div class="inline-flex items-center gap-2 text-xs font-medium text-muted mb-8">
-      <span class="inline-flex h-2 w-2 rounded-full bg-ink"></span>
-      Available for projects
+<!-- ============ HERO: ROBINSON STYLE - CENTERED & PERSONAL ============ -->
+<section id="top" class="pt-40 pb-20 px-5 sm:px-8 text-center">
+  <div class="mx-auto max-w-2xl">
+    <!-- Profile Image -->
+    <div class="mb-8 flex justify-center">
+      <div class="w-24 h-24 rounded-full bg-line flex items-center justify-center text-sm text-muted">
+        [Your Photo]
+      </div>
     </div>
 
-    <!-- Hero headline with strategic line breaks -->
-    <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight mb-6">
-      Web design<br/>
-      & business<br/>
-      systems.
+    <!-- Main Headline -->
+    <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.1] mb-4">
+      Hey, I'm<br/>
+      <span class="block">Colorblend</span>
+      Creative.
     </h1>
 
-    <!-- Subheading -->
-    <p class="text-lg sm:text-xl text-muted leading-relaxed max-w-2xl mb-10">
-      I design and build professional websites, client portals, and custom systems for businesses that want to operate like the best in their field.
+    <!-- Subtitle -->
+    <div class="text-xl sm:text-2xl text-muted leading-relaxed mb-8">
+      <p>Web designer & developer.</p>
+      <p class="mt-2">Building professional websites and business systems.</p>
+    </div>
+
+    <!-- Brief Intro -->
+    <p class="text-muted mb-10 max-w-xl mx-auto">
+      I design and build custom websites, client portals, and SaaS systems for businesses that want to operate like the best in their field. Working solo, delivering results.
     </p>
 
-    <!-- CTA Buttons -->
-    <div class="flex flex-wrap gap-4 mb-16">
-      <a href="#contact" class="inline-flex items-center gap-2 px-6 py-3.5 bg-ink text-white rounded-lg text-sm font-medium hover:opacity-90 transition-opacity">
-        Start a project →
+    <!-- CTA -->
+    <div class="flex flex-wrap items-center justify-center gap-4">
+      <a href="#work" class="px-6 py-3.5 bg-ink text-white rounded-lg text-sm font-medium hover:opacity-90 transition-opacity">
+        View my work
       </a>
-      <a href="#work" class="inline-flex items-center gap-2 px-6 py-3.5 border border-line text-ink rounded-lg text-sm font-medium hover:border-ink transition-colors">
-        View work
+      <a href="#contact" class="px-6 py-3.5 border border-line text-ink rounded-lg text-sm font-medium hover:border-ink transition-colors">
+        Start a project
       </a>
-    </div>
-
-    <!-- Stats -->
-    <div class="flex flex-wrap gap-8 text-sm">
-      <div>
-        <div class="font-bold text-2xl">30+</div>
-        <div class="text-muted">Projects delivered</div>
-      </div>
-      <div>
-        <div class="font-bold text-2xl">3–5 wks</div>
-        <div class="text-muted">Average timeline</div>
-      </div>
-      <div>
-        <div class="font-bold text-2xl">100%</div>
-        <div class="text-muted">Client satisfaction</div>
-      </div>
     </div>
   </div>
 </section>
 
-<!-- ============ PROJECTS: CLEAN & MINIMAL ============ -->
-<section id="work" class="py-24 sm:py-32 px-5 sm:px-8 border-t border-line">
-  <div class="mx-auto max-w-5xl">
-    <div class="mb-16 reveal">
-      <div class="text-xs uppercase tracking-widest text-muted font-medium mb-3">Selected work</div>
-      <h2 class="text-4xl sm:text-5xl font-bold leading-tight mb-6">
-        Real projects.<br/>Real results.
+<!-- ============ AUTO-SCROLL CAROUSEL: SHOWCASE/TESTIMONIALS ============ -->
+<section class="py-16 px-5 sm:px-8 border-t border-line bg-paper">
+  <div class="mx-auto max-w-7xl">
+    <div class="mb-8">
+      <p class="text-xs uppercase tracking-widest text-muted font-medium">Recent work highlights</p>
+    </div>
+    
+    <div class="carousel-track" id="carouselTrack">
+      <!-- Item 1 -->
+      <div class="carousel-item">
+        <div class="rounded-lg overflow-hidden bg-line aspect-[4/3] mb-4">
+          <img src="images/quotely.webp" alt="Quotely" class="w-full h-full object-cover" />
+        </div>
+        <h3 class="font-semibold mb-1">Quotely</h3>
+        <p class="text-sm text-muted">SaaS for service businesses</p>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="carousel-item">
+        <div class="rounded-lg overflow-hidden bg-line aspect-[4/3] mb-4">
+          <img src="images/noblebabies.webp" alt="Noblebabies" class="w-full h-full object-cover" />
+        </div>
+        <h3 class="font-semibold mb-1">Noblebabies & Bumps</h3>
+        <p class="text-sm text-muted">Ecommerce platform</p>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="carousel-item">
+        <div class="rounded-lg overflow-hidden bg-line aspect-[4/3] mb-4">
+          <img src="images/buffpepe.webp" alt="Buffpepe" class="w-full h-full object-cover" />
+        </div>
+        <h3 class="font-semibold mb-1">Buffpepe</h3>
+        <p class="text-sm text-muted">Memecoin landing page</p>
+      </div>
+
+      <!-- Item 4 -->
+      <div class="carousel-item">
+        <div class="rounded-lg overflow-hidden bg-line aspect-[4/3] mb-4">
+          <img src="images/saffrongas.webp" alt="Saffrongas" class="w-full h-full object-cover" />
+        </div>
+        <h3 class="font-semibold mb-1">Saffrongas</h3>
+        <p class="text-sm text-muted">Service business website</p>
+      </div>
+    </div>
+
+    <div class="mt-6 flex items-center justify-between">
+      <p class="text-xs text-muted">Hover to pause • Swipe to scroll</p>
+      <a href="#work" class="text-sm font-medium text-ink hover:text-muted transition-colors">View all projects →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROJECTS: AJIDE VICTOR STYLE ============ -->
+<section id="work" class="py-24 sm:py-32 px-5 sm:px-8 bg-dark text-white">
+  <div class="mx-auto max-w-7xl">
+    <div class="mb-20">
+      <div class="text-xs uppercase tracking-widest text-white/50 font-medium mb-4">Selected work</div>
+      <h2 class="text-5xl sm:text-6xl font-bold leading-tight mb-6">
+        Projects that<br/>
+        drive results.
       </h2>
-      <p class="text-lg text-muted max-w-2xl">
-        A sampling of recent work across industries. Each project tackles a real business challenge.
-      </p>
     </div>
 
-    <div class="space-y-20" id="projectsGrid">
+    <!-- Projects Scroll Container -->
+    <div class="space-y-40" id="projectsContainer">
 
-      <!-- PROJECT 1 -->
-      <a href="https://quotely.com.ng" target="_blank" rel="noopener" class="group reveal block">
-        <div class="rounded-lg overflow-hidden mb-6 bg-line aspect-[16/10]">
-          <img src="images/quotely.webp" alt="Quotely" class="w-full h-full object-cover group-hover:opacity-90 transition-opacity" />
-        </div>
-        <h3 class="text-2xl sm:text-3xl font-bold mb-2 flex items-center gap-2">
-          Quotely
-          <svg class="w-5 h-5 text-muted group-hover:text-ink transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L1 10m0 0l6 6"></path>
-          </svg>
-        </h3>
-        <p class="text-muted mb-4">SaaS platform for service businesses to create branded quotations, manage client portals, and track follow-ups.</p>
-        <div class="flex flex-wrap gap-2">
-          <span class="text-xs px-3 py-1.5 bg-line text-ink rounded-full">PHP</span>
-          <span class="text-xs px-3 py-1.5 bg-line text-ink rounded-full">MySQL</span>
-          <span class="text-xs px-3 py-1.5 bg-line text-ink rounded-full">SaaS</span>
-        </div>
-      </a>
+      <!-- PROJECT 1: QUOTELY -->
+      <div class="project-item reveal" data-project="0">
+        <div class="project-gallery">
+          <!-- Left: Project Info -->
+          <div class="pt-12">
+            <div class="text-xs uppercase tracking-widest text-white/50 font-medium mb-3">01. Web Development</div>
+            <h3 class="text-4xl sm:text-5xl font-bold mb-6">Quotely</h3>
+            <p class="text-lg text-white/80 mb-6 leading-relaxed">
+              A multi-tenant SaaS platform for service businesses to create branded quotations, manage client portals, track follow-ups, and close deals faster.
+            </p>
+            <p class="text-white/60 mb-8">Service businesses were losing deals because quoting felt slow and unprofessional. Quotely fixes that.</p>
+            <div class="flex flex-wrap gap-2 mb-8">
+              <span class="text-xs px-3 py-1.5 bg-white/10 text-white rounded-full">PHP</span>
+              <span class="text-xs px-3 py-1.5 bg-white/10 text-white rounded-full">MySQL</span>
+              <span class="text-xs px-3 py-1.5 bg-white/10 text-white rounded-full">SaaS</span>
+            </div>
+            <a href="https://quotely.com.ng" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-white font-medium hover:text-white/70 transition-colors">
+              View project →
+            </a>
+          </div>
 
-      <!-- PROJECT 2 -->
-      <a href="https://dev-noblebabiesandbump.pantheonsite.io/" target="_blank" rel="noopener" class="group reveal block">
-        <div class="rounded-lg overflow-hidden mb-6 bg-line aspect-[16/10]">
-          <img src="images/noblebabies.webp" alt="Noblebabies & Bumps" class="w-full h-full object-cover group-hover:opacity-90 transition-opacity" />
+          <!-- Right: Project Preview -->
+          <div class="project-preview-container">
+            <div class="project-preview-card active" style="background-image: url('images/quotely.webp'); background-size: cover; background-position: center;"></div>
+            <div class="project-preview-card prev" style="background-image: url('images/noblebabies.webp'); background-size: cover; background-position: center;"></div>
+          </div>
         </div>
-        <h3 class="text-2xl sm:text-3xl font-bold mb-2 flex items-center gap-2">
-          Noblebabies & Bumps
-          <svg class="w-5 h-5 text-muted group-hover:text-ink transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L1 10m0 0l6 6"></path>
-          </svg>
-        </h3>
-        <p class="text-muted mb-4">Full ecommerce site for baby and maternity products. Designed and built from scratch with product catalog, checkout, and branding.</p>
-        <div class="flex flex-wrap gap-2">
-          <span class="text-xs px-3 py-1.5 bg-line text-ink rounded-full">WordPress</span>
-          <span class="text-xs px-3 py-1.5 bg-line text-ink rounded-full">WooCommerce</span>
-          <span class="text-xs px-3 py-1.5 bg-line text-ink rounded-full">Elementor</span>
-        </div>
-      </a>
+      </div>
 
-      <!-- PROJECT 3 -->
-      <a href="https://buffpepe.io/" target="_blank" rel="noopener" class="group reveal block">
-        <div class="rounded-lg overflow-hidden mb-6 bg-line aspect-[16/10]">
-          <img src="images/buffpepe.webp" alt="Buffpepe" class="w-full h-full object-cover group-hover:opacity-90 transition-opacity" />
+      <!-- PROJECT 2: NOBLEBABIES -->
+      <div class="project-item reveal" data-project="1">
+        <div class="project-gallery">
+          <!-- Left: Project Info -->
+          <div class="pt-12">
+            <div class="text-xs uppercase tracking-widest text-white/50 font-medium mb-3">02. E-Commerce</div>
+            <h3 class="text-4xl sm:text-5xl font-bold mb-6">Noblebabies & Bumps</h3>
+            <p class="text-lg text-white/80 mb-6 leading-relaxed">
+              Full ecommerce platform for baby and maternity products. Designed and built from scratch with product catalog, checkout flow, and brand identity.
+            </p>
+            <p class="text-white/60 mb-8">Started with zero—now it's a fully functional online store generating revenue.</p>
+            <div class="flex flex-wrap gap-2 mb-8">
+              <span class="text-xs px-3 py-1.5 bg-white/10 text-white rounded-full">WordPress</span>
+              <span class="text-xs px-3 py-1.5 bg-white/10 text-white rounded-full">WooCommerce</span>
+              <span class="text-xs px-3 py-1.5 bg-white/10 text-white rounded-full">Elementor</span>
+            </div>
+            <a href="https://dev-noblebabiesandbump.pantheonsite.io/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-white font-medium hover:text-white/70 transition-colors">
+              View project →
+            </a>
+          </div>
+
+          <!-- Right: Project Preview -->
+          <div class="project-preview-container">
+            <div class="project-preview-card active" style="background-image: url('images/noblebabies.webp'); background-size: cover; background-position: center;"></div>
+            <div class="project-preview-card prev" style="background-image: url('images/buffpepe.webp'); background-size: cover; background-position: center;"></div>
+          </div>
         </div>
-        <h3 class="text-2xl sm:text-3xl font-bold mb-2 flex items-center gap-2">
-          Buffpepe
-          <svg class="w-5 h-5 text-muted group-hover:text-ink transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L1 10m0 0l6 6"></path>
-          </svg>
-        </h3>
-        <p class="text-muted mb-4">Fast, high-energy landing page for memecoin marketing. Features tokenomics, roadmap, and community links.</p>
-        <div class="flex flex-wrap gap-2">
-          <span class="text-xs px-3 py-1.5 bg-line text-ink rounded-full">HTML</span>
-          <span class="text-xs px-3 py-1.5 bg-line text-ink rounded-full">CSS</span>
-          <span class="text-xs px-3 py-1.5 bg-line text-ink rounded-full">JavaScript</span>
+      </div>
+
+      <!-- PROJECT 3: BUFFPEPE -->
+      <div class="project-item reveal" data-project="2">
+        <div class="project-gallery">
+          <!-- Left: Project Info -->
+          <div class="pt-12">
+            <div class="text-xs uppercase tracking-widest text-white/50 font-medium mb-3">03. Landing Page</div>
+            <h3 class="text-4xl sm:text-5xl font-bold mb-6">Buffpepe</h3>
+            <p class="text-lg text-white/80 mb-6 leading-relaxed">
+              Fast, high-energy landing page for memecoin marketing. Features tokenomics explorer, roadmap timeline, and direct community links.
+            </p>
+            <p class="text-white/60 mb-8">Built for speed and conversion—captures attention, explains the project, drives action.</p>
+            <div class="flex flex-wrap gap-2 mb-8">
+              <span class="text-xs px-3 py-1.5 bg-white/10 text-white rounded-full">HTML</span>
+              <span class="text-xs px-3 py-1.5 bg-white/10 text-white rounded-full">CSS</span>
+              <span class="text-xs px-3 py-1.5 bg-white/10 text-white rounded-full">JavaScript</span>
+            </div>
+            <a href="https://buffpepe.io/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-white font-medium hover:text-white/70 transition-colors">
+              View project →
+            </a>
+          </div>
+
+          <!-- Right: Project Preview -->
+          <div class="project-preview-container">
+            <div class="project-preview-card active" style="background-image: url('images/buffpepe.webp'); background-size: cover; background-position: center;"></div>
+            <div class="project-preview-card prev" style="background-image: url('images/saffrongas.webp'); background-size: cover; background-position: center;"></div>
+          </div>
         </div>
-      </a>
+      </div>
 
     </div>
   </div>
 </section>
 
-<!-- ============ SERVICES: SIMPLE, ELEGANT ============ -->
-<section id="services" class="py-24 sm:py-32 px-5 sm:px-8 border-t border-line bg-paper">
+<!-- ============ SERVICES ============ -->
+<section id="services" class="py-24 sm:py-32 px-5 sm:px-8 bg-paper border-t border-line">
   <div class="mx-auto max-w-5xl">
     <div class="mb-16 reveal">
       <div class="text-xs uppercase tracking-widest text-muted font-medium mb-3">Services</div>
@@ -222,128 +344,63 @@
     </div>
 
     <div class="grid sm:grid-cols-2 gap-8">
-      <!-- Service 1 -->
       <div class="reveal border border-line rounded-lg p-8">
-        <div class="mb-6">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-          </svg>
-        </div>
-        <h3 class="text-xl font-bold mb-3">Business Websites</h3>
-        <p class="text-muted text-sm leading-relaxed">Professional sites that convert visitors into leads. From branding to checkout, every detail purposeful.</p>
+        <h3 class="text-xl font-bold mb-3">Professional Websites</h3>
+        <p class="text-muted text-sm leading-relaxed">Sites that convert visitors into leads. From branding to checkout, every detail purposeful and optimized.</p>
       </div>
 
-      <!-- Service 2 -->
       <div class="reveal border border-line rounded-lg p-8">
-        <div class="mb-6">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
-          </svg>
-        </div>
+        <h3 class="text-xl font-bold mb-3">Custom SaaS Systems</h3>
+        <p class="text-muted text-sm leading-relaxed">Client portals, dashboards, and multi-tenant applications. Built on PHP/MySQL with scalability in mind.</p>
+      </div>
+
+      <div class="reveal border border-line rounded-lg p-8">
         <h3 class="text-xl font-bold mb-3">UI/UX Design</h3>
         <p class="text-muted text-sm leading-relaxed">Interfaces that users understand instantly. Clean, intuitive, and focused on solving real problems.</p>
       </div>
 
-      <!-- Service 3 -->
       <div class="reveal border border-line rounded-lg p-8">
-        <div class="mb-6">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4m0 0l-4 4m4-4H3"></path>
-          </svg>
-        </div>
-        <h3 class="text-xl font-bold mb-3">Custom Systems</h3>
-        <p class="text-muted text-sm leading-relaxed">Client portals, dashboards, and SaaS platforms. Built on PHP, MySQL, and modern architecture.</p>
-      </div>
-
-      <!-- Service 4 -->
-      <div class="reveal border border-line rounded-lg p-8">
-        <div class="mb-6">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-          </svg>
-        </div>
         <h3 class="text-xl font-bold mb-3">Fast Delivery</h3>
-        <p class="text-muted text-sm leading-relaxed">From kickoff to launch in 3–5 weeks. Fixed scope, clear timeline, no surprises.</p>
+        <p class="text-muted text-sm leading-relaxed">3–5 weeks from kickoff to launch. Fixed scope, clear timeline. No surprises, just results.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ ABOUT: PERSONAL & CREDIBLE ============ -->
-<section id="about" class="py-24 sm:py-32 px-5 sm:px-8 border-t border-line">
+<!-- ============ ABOUT ============ -->
+<section id="about" class="py-24 sm:py-32 px-5 sm:px-8 border-t border-line bg-paper">
   <div class="mx-auto max-w-5xl">
     <div class="reveal mb-12">
       <div class="text-xs uppercase tracking-widest text-muted font-medium mb-3">About</div>
-      <h2 class="text-4xl sm:text-5xl font-bold leading-tight mb-8">
-        Freelance developer,<br/>designer & architect student.
+      <h2 class="text-4xl sm:text-5xl font-bold leading-tight">
+        Freelance web dev,<br/>
+        designer & student.
       </h2>
     </div>
 
     <div class="grid md:grid-cols-2 gap-12 items-center">
       <div class="reveal space-y-6 text-lg text-muted leading-relaxed">
         <p>
-          I'm a freelance web developer and UI/UX designer operating under <strong class="text-ink">Colorblend Creative</strong>. For the past few years, I've been building professional websites, custom business systems, and digital experiences for growing businesses across industries.
+          I'm a freelance web developer and UI/UX designer building professional websites and custom business systems for growing companies. Working solo, I focus on delivering high-quality work on tight timelines.
         </p>
         <p>
-          I also teach UI/UX design to aspiring designers and am currently studying Architecture at Obafemi Awolowo University in Nigeria.
+          I also teach UI/UX design to aspiring designers and am studying Architecture at Obafemi Awolowo University in Nigeria.
         </p>
         <p>
-          I work across WordPress, custom PHP/MySQL development, React, and modern web technologies. My focus is always on creating solutions that are not just beautiful, but solve real business problems.
+          Tech stack: WordPress, PHP/MySQL, React, HTML/CSS/JavaScript. My focus is solving real business problems with clean, purposeful design.
         </p>
       </div>
 
-      <div class="reveal space-y-6">
+      <div class="reveal">
         <div class="rounded-lg bg-line aspect-square"></div>
-        <p class="text-sm text-muted">Freelancing since 2019 • Based in Nigeria</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ PROCESS: HOW I WORK ============ -->
-<section id="process" class="py-24 sm:py-32 px-5 sm:px-8 border-t border-line bg-paper">
-  <div class="mx-auto max-w-5xl">
-    <div class="reveal mb-16">
-      <div class="text-xs uppercase tracking-widest text-muted font-medium mb-3">Process</div>
-      <h2 class="text-4xl sm:text-5xl font-bold leading-tight">
-        How I work.
-      </h2>
-    </div>
-
-    <div class="space-y-12">
-      <!-- Step 1 -->
-      <div class="reveal border-l-2 border-line pl-8">
-        <div class="text-xs uppercase tracking-widest text-muted font-medium mb-2">01. Understand</div>
-        <h3 class="text-2xl font-bold mb-3">Discovery call & brief</h3>
-        <p class="text-muted leading-relaxed">We start with a conversation. I learn about your business, your goals, your audience, and what success looks like for you.</p>
-      </div>
-
-      <!-- Step 2 -->
-      <div class="reveal border-l-2 border-line pl-8">
-        <div class="text-xs uppercase tracking-widest text-muted font-medium mb-2">02. Design</div>
-        <h3 class="text-2xl font-bold mb-3">Wireframes & visual design</h3>
-        <p class="text-muted leading-relaxed">I create wireframes to map out functionality, then design the visual direction. You approve before any code is written.</p>
-      </div>
-
-      <!-- Step 3 -->
-      <div class="reveal border-l-2 border-line pl-8">
-        <div class="text-xs uppercase tracking-widest text-muted font-medium mb-2">03. Build</div>
-        <h3 class="text-2xl font-bold mb-3">Development & launch</h3>
-        <p class="text-muted leading-relaxed">I code your solution from the ground up. You get updates along the way. Launch happens on your timeline.</p>
-      </div>
-
-      <!-- Step 4 -->
-      <div class="reveal border-l-2 border-line pl-8">
-        <div class="text-xs uppercase tracking-widest text-muted font-medium mb-2">04. Support</div>
-        <h3 class="text-2xl font-bold mb-3">Maintenance & updates</h3>
-        <p class="text-muted leading-relaxed">After launch, I provide support, fixes, and updates. Your site is always running smoothly.</p>
+        <p class="text-sm text-muted mt-4">Freelancing since 2019 • Based in Nigeria • Available now</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ============ FAQ ============ -->
-<section id="faq" class="py-24 sm:py-32 px-5 sm:px-8 border-t border-line">
+<section id="faq" class="py-24 sm:py-32 px-5 sm:px-8 border-t border-line bg-paper">
   <div class="mx-auto max-w-3xl">
     <div class="reveal mb-16">
       <div class="text-xs uppercase tracking-widest text-muted font-medium mb-3">FAQ</div>
@@ -353,54 +410,50 @@
     </div>
 
     <div class="space-y-4">
-      <!-- FAQ 1 -->
       <div class="reveal border border-line rounded-lg">
         <button class="faq-btn w-full px-6 py-5 flex items-center justify-between text-left font-semibold hover:bg-line/50 transition-colors">
-          What's your typical project timeline?
+          What's your typical timeline?
           <span class="faq-icon text-2xl text-muted">+</span>
         </button>
         <div class="faq-panel">
           <div class="px-6 pb-5 text-muted leading-relaxed">
-            Most projects take 3–5 weeks from kickoff to launch. The timeline depends on complexity and how quickly you can provide feedback. I keep things moving fast without cutting corners.
+            Most projects take 3–5 weeks from kickoff to launch. Timeline depends on complexity and how quickly you provide feedback. I move fast without cutting corners.
           </div>
         </div>
       </div>
 
-      <!-- FAQ 2 -->
       <div class="reveal border border-line rounded-lg">
         <button class="faq-btn w-full px-6 py-5 flex items-center justify-between text-left font-semibold hover:bg-line/50 transition-colors">
-          How do you price your work?
+          How do you price projects?
           <span class="faq-icon text-2xl text-muted">+</span>
         </button>
         <div class="faq-panel">
           <div class="px-6 pb-5 text-muted leading-relaxed">
-            I quote based on project scope. You get a fixed price and timeline upfront—no surprises, no surprises. I offer a free consultation to discuss your needs and provide an accurate estimate.
+            I quote based on scope. You get a fixed price upfront—no hidden fees, no surprises. Schedule a free consultation to discuss your project and get an accurate quote.
           </div>
         </div>
       </div>
 
-      <!-- FAQ 3 -->
       <div class="reveal border border-line rounded-lg">
         <button class="faq-btn w-full px-6 py-5 flex items-center justify-between text-left font-semibold hover:bg-line/50 transition-colors">
-          Can you work with my existing site?
+          Can you work on existing sites?
           <span class="faq-icon text-2xl text-muted">+</span>
         </button>
         <div class="faq-panel">
           <div class="px-6 pb-5 text-muted leading-relaxed">
-            Yes. I can redesign or rebuild existing sites on WordPress, custom PHP, or other platforms. If your current site needs an upgrade or overhaul, I can help.
+            Absolutely. I can redesign, rebuild, or enhance existing sites on WordPress, custom PHP, or other platforms. Your current site can always be improved.
           </div>
         </div>
       </div>
 
-      <!-- FAQ 4 -->
       <div class="reveal border border-line rounded-lg">
         <button class="faq-btn w-full px-6 py-5 flex items-center justify-between text-left font-semibold hover:bg-line/50 transition-colors">
-          Do you provide support after launch?
+          What about post-launch support?
           <span class="faq-icon text-2xl text-muted">+</span>
         </button>
         <div class="faq-panel">
           <div class="px-6 pb-5 text-muted leading-relaxed">
-            Absolutely. I provide maintenance, bug fixes, and updates after your site goes live. You're supported, not abandoned.
+            Yes. I provide maintenance, bug fixes, and updates after launch. You're fully supported, not abandoned. We can discuss support plans during initial consultation.
           </div>
         </div>
       </div>
@@ -408,14 +461,15 @@
   </div>
 </section>
 
-<!-- ============ CONTACT / CTA ============ -->
+<!-- ============ CONTACT ============ -->
 <section id="contact" class="py-24 sm:py-32 px-5 sm:px-8 border-t border-line bg-ink text-white">
   <div class="mx-auto max-w-3xl text-center">
     <h2 class="text-4xl sm:text-5xl font-bold leading-tight mb-6">
-      Let's create<br/>something amazing.
+      Let's build<br/>
+      something amazing.
     </h2>
     <p class="text-lg text-white/70 mb-10 max-w-xl mx-auto">
-      Have a project in mind? Let's talk about how I can help bring your vision to life.
+      Have a project or idea? Let's talk about how I can bring your vision to life.
     </p>
 
     <form id="contactForm" class="space-y-5">
@@ -437,16 +491,14 @@
 </main>
 
 <!-- ============ FOOTER ============ -->
-<footer class="border-t border-line px-5 sm:px-8 py-12">
+<footer class="border-t border-line px-5 sm:px-8 py-12 bg-paper">
   <div class="mx-auto max-w-7xl">
     <div class="grid sm:grid-cols-3 gap-8 mb-8">
-      <!-- Brand -->
       <div>
         <div class="font-semibold mb-2">Colorblend Creative</div>
         <p class="text-sm text-muted">Web design & business systems for growing businesses.</p>
       </div>
 
-      <!-- Links -->
       <div>
         <div class="font-semibold text-sm mb-4">Links</div>
         <nav class="space-y-2 text-sm text-muted">
@@ -457,7 +509,6 @@
         </nav>
       </div>
 
-      <!-- Contact -->
       <div>
         <div class="font-semibold text-sm mb-4">Contact</div>
         <div class="space-y-2 text-sm text-muted">
@@ -481,14 +532,14 @@
   lucide.createIcons();
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Mobile menu toggle
+  // Mobile menu
   const menuBtn = document.getElementById('menuBtn');
   const mobileMenu = document.getElementById('mobileMenu');
   menuBtn?.addEventListener('click', () => {
     mobileMenu.classList.toggle('hidden');
   });
 
-  // Nav scroll effect
+  // Nav scroll
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
     if (window.scrollY > 8) {
@@ -509,6 +560,45 @@
     });
   }, { threshold: 0.15 });
   revealEls.forEach((el) => io.observe(el));
+
+  // Auto-scroll carousel with pause on hover/touch
+  const carouselTrack = document.getElementById('carouselTrack');
+  if (carouselTrack) {
+    let autoScroll = true;
+    function tick() {
+      if (autoScroll && carouselTrack.scrollLeft < carouselTrack.scrollWidth - carouselTrack.clientWidth) {
+        carouselTrack.scrollLeft += 0.5;
+      }
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+    ['mouseenter', 'touchstart'].forEach(evt => carouselTrack.addEventListener(evt, () => autoScroll = false, { passive: true }));
+    ['mouseleave', 'touchend'].forEach(evt => carouselTrack.addEventListener(evt, () => autoScroll = true, { passive: true }));
+  }
+
+  // Project scroll effect (Ajide Victor style)
+  const projectsContainer = document.getElementById('projectsContainer');
+  const projectItems = document.querySelectorAll('.project-item');
+  if (projectItems.length > 0) {
+    const updateProjectCards = () => {
+      projectItems.forEach((item, index) => {
+        const cards = item.querySelectorAll('.project-preview-card');
+        const rect = item.getBoundingClientRect();
+        const isActive = rect.top < window.innerHeight * 0.5 && rect.bottom > window.innerHeight * 0.5;
+        
+        cards.forEach((card, cardIndex) => {
+          card.classList.remove('active', 'prev');
+          if (cardIndex === 0) {
+            card.classList.add('active');
+          } else if (cardIndex === 1) {
+            card.classList.add('prev');
+          }
+        });
+      });
+    };
+    window.addEventListener('scroll', updateProjectCards, { passive: true });
+    updateProjectCards();
+  }
 
   // FAQ accordion
   document.querySelectorAll('.faq-btn').forEach((btn) => {
