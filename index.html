@@ -53,10 +53,14 @@
   }
   .hero-glow { animation: driftGlow 16s ease-in-out infinite; }
 
-  @media (prefers-reduced-motion: reduce) {
+   @media (prefers-reduced-motion: reduce) {
     .hero-glow { animation: none; }
     .reveal { transition: none; opacity: 1; transform: none; }
   }
+
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .marquee-track { display: flex; width: max-content; animation: marquee 22s linear infinite; }
+  @media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; } }
 </style>
 </head>
 <body class="bg-white text-foreground">
@@ -130,7 +134,7 @@
     </div>
 
     <!-- Stat row instead of a hero image -->
-    <div class="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto">
+    <!-- <div class="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto">
       <div class="rounded-2xl border border-border bg-white shadow-soft p-6 text-left">
         <div class="text-xs text-muted">Projects delivered</div>
         <div class="mt-1 text-lg font-semibold">30+</div>
@@ -146,18 +150,34 @@
         <div class="mt-1 text-lg font-semibold">Within 24h</div>
         <div class="mt-1 text-xs text-muted">On every inquiry</div>
       </div>
-    </div>
+    </div> -->
   </div>
 </section>
 
 <!-- ============ TRUST STRIP ============ -->
-<section class="border-y border-border bg-tint-2">
-  <div class="mx-auto max-w-7xl px-5 sm:px-8 py-6 flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
-    <div class="flex items-center gap-2 text-sm text-foreground/80"><i data-lucide="check" class="w-4 h-4 text-primary"></i> Custom Web Development</div>
-    <div class="flex items-center gap-2 text-sm text-foreground/80"><i data-lucide="check" class="w-4 h-4 text-primary"></i> UI/UX Design</div>
-    <div class="flex items-center gap-2 text-sm text-foreground/80"><i data-lucide="check" class="w-4 h-4 text-primary"></i> Business Systems</div>
-    <div class="flex items-center gap-2 text-sm text-foreground/80"><i data-lucide="check" class="w-4 h-4 text-primary"></i> Responsive Websites</div>
-    <div class="flex items-center gap-2 text-sm text-foreground/80"><i data-lucide="check" class="w-4 h-4 text-primary"></i> Fast Delivery</div>
+<!-- ============ TRUST STRIP ============ -->
+<section class="border-y border-border bg-primary overflow-hidden">
+  <div class="py-5">
+    <div class="marquee-track text-sm font-medium text-white">
+      <div class="flex items-center gap-8 pr-8 shrink-0">
+        <span class="flex items-center gap-2"><i data-lucide="layout" class="w-4 h-4"></i> Website Design</span>
+        <span class="flex items-center gap-2"><i data-lucide="pen-tool" class="w-4 h-4"></i> UI/UX Design</span>
+        <span class="flex items-center gap-2"><i data-lucide="palette" class="w-4 h-4"></i> Branding</span>
+        <span class="flex items-center gap-2"><i data-lucide="rocket" class="w-4 h-4"></i> Landing Pages</span>
+        <span class="flex items-center gap-2"><i data-lucide="database" class="w-4 h-4"></i> Business Systems</span>
+        <span class="flex items-center gap-2"><i data-lucide="smartphone" class="w-4 h-4"></i> Responsive Websites</span>
+        <span class="flex items-center gap-2"><i data-lucide="zap" class="w-4 h-4"></i> Fast Delivery</span>
+      </div>
+      <div class="flex items-center gap-8 pr-8 shrink-0" aria-hidden="true">
+        <span class="flex items-center gap-2"><i data-lucide="layout" class="w-4 h-4"></i> Website Design</span>
+        <span class="flex items-center gap-2"><i data-lucide="pen-tool" class="w-4 h-4"></i> UI/UX Design</span>
+        <span class="flex items-center gap-2"><i data-lucide="palette" class="w-4 h-4"></i> Branding</span>
+        <span class="flex items-center gap-2"><i data-lucide="rocket" class="w-4 h-4"></i> Landing Pages</span>
+        <span class="flex items-center gap-2"><i data-lucide="database" class="w-4 h-4"></i> Business Systems</span>
+        <span class="flex items-center gap-2"><i data-lucide="smartphone" class="w-4 h-4"></i> Responsive Websites</span>
+        <span class="flex items-center gap-2"><i data-lucide="zap" class="w-4 h-4"></i> Fast Delivery</span>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -518,9 +538,9 @@
           <img src="images/review-1.png" alt="Fiverr review 1" class="w-full h-full object-cover"
                onerror="this.closest('.review-thumb').innerHTML = '&lt;div class=&quot;img-placeholder&quot;&gt;Add review-1.png&lt;/div&gt;'" />
         </div>
-        <div class="p-5">
+        <!-- <div class="p-5">
           <p class="text-sm text-foreground/90 leading-relaxed">"Delivered exactly what I asked for, and fast. Will book again."</p>
-        </div>
+        </div> -->
       </div>
 
       <!-- Review 2 -->
@@ -529,9 +549,9 @@
           <img src="images/review-2.png" alt="Fiverr review 2" class="w-full h-full object-cover"
                onerror="this.closest('.review-thumb').innerHTML = '&lt;div class=&quot;img-placeholder&quot;&gt;Add review-2.png&lt;/div&gt;'" />
         </div>
-        <div class="p-5">
+        <!-- <div class="p-5">
           <p class="text-sm text-foreground/90 leading-relaxed">"Great communication from start to finish, highly recommended."</p>
-        </div>
+        </div> -->
       </div>
 
       <!-- Review 3 -->
@@ -540,9 +560,9 @@
           <img src="images/review-3.png" alt="Fiverr review 3" class="w-full h-full object-cover"
                onerror="this.closest('.review-thumb').innerHTML = '&lt;div class=&quot;img-placeholder&quot;&gt;Add review-3.png&lt;/div&gt;'" />
         </div>
-        <div class="p-5">
+        <!-- <div class="p-5">
           <p class="text-sm text-foreground/90 leading-relaxed">"Very professional, understood the brief right away."</p>
-        </div>
+        </div> -->
       </div>
 
       <!-- Review 4 -->
@@ -551,9 +571,9 @@
           <img src="images/review-4.png" alt="Fiverr review 4" class="w-full h-full object-cover"
                onerror="this.closest('.review-thumb').innerHTML = '&lt;div class=&quot;img-placeholder&quot;&gt;Add review-4.png&lt;/div&gt;'" />
         </div>
-        <div class="p-5">
+        <!-- <div class="p-5">
           <p class="text-sm text-foreground/90 leading-relaxed">"Clean design, easy to work with, delivered ahead of time."</p>
-        </div>
+        </div> -->
       </div>
 
       <!-- Review 5 -->
@@ -562,9 +582,9 @@
           <img src="images/review-5.png" alt="Fiverr review 5" class="w-full h-full object-cover"
                onerror="this.closest('.review-thumb').innerHTML = '&lt;div class=&quot;img-placeholder&quot;&gt;Add review-5.png&lt;/div&gt;'" />
         </div>
-        <div class="p-5">
+        <!-- <div class="p-5">
           <p class="text-sm text-foreground/90 leading-relaxed">"Exactly what our business needed, will hire again."</p>
-        </div>
+        </div> -->
       </div>
 
       <!-- Review 6 -->
@@ -573,9 +593,9 @@
           <img src="images/review-6.png" alt="Fiverr review 6" class="w-full h-full object-cover"
                onerror="this.closest('.review-thumb').innerHTML = '&lt;div class=&quot;img-placeholder&quot;&gt;Add review-6.png&lt;/div&gt;'" />
         </div>
-        <div class="p-5">
+        <!-- <div class="p-5">
           <p class="text-sm text-foreground/90 leading-relaxed">"Patient with revisions and genuinely cares about the result."</p>
-        </div>
+        </div> -->
       </div>
 
       <!-- Review 7 -->
@@ -584,9 +604,9 @@
           <img src="images/review-7.png" alt="Fiverr review 7" class="w-full h-full object-cover"
                onerror="this.closest('.review-thumb').innerHTML = '&lt;div class=&quot;img-placeholder&quot;&gt;Add review-7.png&lt;/div&gt;'" />
         </div>
-        <div class="p-5">
+        <!-- <div class="p-5">
           <p class="text-sm text-foreground/90 leading-relaxed">"Top-tier work, better than what we paid for."</p>
-        </div>
+        </div> -->
       </div>
 
       <!-- Review 8 -->
@@ -595,9 +615,9 @@
           <img src="images/review-8.png" alt="Fiverr review 8" class="w-full h-full object-cover"
                onerror="this.closest('.review-thumb').innerHTML = '&lt;div class=&quot;img-placeholder&quot;&gt;Add review-8.png&lt;/div&gt;'" />
         </div>
-        <div class="p-5">
+        <!-- <div class="p-5">
           <p class="text-sm text-foreground/90 leading-relaxed">"Would recommend to any business looking to go online."</p>
-        </div>
+        </div> -->
       </div>
 
     </div>
