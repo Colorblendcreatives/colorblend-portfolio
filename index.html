@@ -7,7 +7,7 @@
   <link rel="icon" type="image/jpeg" href="images/logo.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = {
@@ -24,7 +24,7 @@
           muted: '#6B7280',
         },
         fontFamily: {
-          sans: ['Roboto', 'sans-serif'],
+          sans: ['Plus Jakarta Sans', 'sans-serif'],
         },
       },
     },
@@ -32,7 +32,7 @@
 </script>
 <style>
   html { scroll-behavior: smooth; }
-  body { font-family: 'Roboto', sans-serif; color: #0F1623; }
+  body { font-family: 'Plus Jakarta Sans', sans-serif; color: #0F1623; }
   .shadow-lift { box-shadow: 0 20px 45px -15px rgba(20, 64, 184, 0.25); }
   .shadow-soft { box-shadow: 0 8px 24px -8px rgba(15, 22, 35, 0.08); }
   .reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
@@ -53,9 +53,13 @@
   }
   .hero-glow { animation: driftGlow 16s ease-in-out infinite; }
 
-   @media (prefers-reduced-motion: reduce) {
+    @keyframes blink { 50% { opacity: 0; } }
+  .typewriter-cursor { animation: blink 1s step-end infinite; }
+
+  @media (prefers-reduced-motion: reduce) {
     .hero-glow { animation: none; }
     .reveal { transition: none; opacity: 1; transform: none; }
+    .typewriter-cursor { animation: none; }
   }
 
   @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
@@ -113,11 +117,14 @@
       </span>
       Open for new projects
     </div>
-    <h1 class="mt-6 text-[40px] leading-[1.08] sm:text-6xl lg:text-[68px] font-bold tracking-tight" style="letter-spacing:-0.03em;">
-     I design Websites and systems that help you <span class="text-primary">win more clients</span>.
+       <h1 class="mt-6 text-[40px] leading-[1.08] sm:text-6xl lg:text-[68px] font-bold tracking-tight" style="letter-spacing:-0.03em;">
+      Hey, I am Odunayo
     </h1>
+    <p class="mt-4 text-2xl sm:text-3xl font-semibold">
+      <span id="typewriter" class="text-primary"></span><span class="typewriter-cursor inline-block w-[2px] h-[1em] bg-primary align-middle ml-0.5"></span>
+    </p>
     <p class="mt-6 max-w-2xl mx-auto text-lg text-muted leading-relaxed">
-     Hello, I am Odunayo<br>I design and builds websites, landing pages and brand identities for businesses
+      I design and build websites, landing pages and brand identities for businesses
       that want to look established, load fast, and turn more visitors into paying clients.
     </p>
        <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
@@ -641,7 +648,7 @@
           <span class="faq-icon mt-1 w-8 h-8 shrink-0 rounded-full grid place-items-center border border-border">+</span>
         </button>
         <div class="faq-panel">
-          <p class="text-muted leading-relaxed max-w-2xl pb-6">Landing pages typically few days. Business websites take 1 to 2 weeks. Custom systems and dashboards range from3 to 4 weeks depending on scope. You'll get a clear timeline in the proposal.</p>
+          <p class="text-muted leading-relaxed max-w-2xl pb-6">Landing pages typically a few days. Business websites take 1 to 2 weeks. Custom systems and dashboards range from 3 to 4 weeks depending on scope. You'll get a clear timeline in the proposal.</p>
         </div>
       </div>
       <div>
@@ -720,7 +727,7 @@
               <select name="budget" class="w-full h-12 rounded-xl border border-border bg-white px-4 text-sm outline-none focus:border-primary transition-colors">
                 <option>Under $1k</option>
                 <option>$1k to $3k</option>
-                <option>$3k above k</option>
+                <option>$3k above</option>
                </select>
             </div>
           </div>
@@ -752,8 +759,11 @@
         <span class="text-sm font-semibold">Colorblend Creative</span>
       </a>
       <div class="text-xs text-muted max-w-xs">Websites & systems for growing businesses.</div>
-      <a href="mailto:colorblendcreative@gmail.com" class="text-xs text-primary hover:text-primary-dark flex items-center gap-1.5">
+            <a href="mailto:colorblendcreative@gmail.com" class="text-xs text-primary hover:text-primary-dark flex items-center gap-1.5">
         <i data-lucide="mail" class="w-3.5 h-3.5"></i> colorblendcreative@gmail.com
+      </a>
+      <a href="https://www.behance.net/ridwanullahoyelami" target="_blank" rel="noopener" class="text-xs text-primary hover:text-primary-dark flex items-center gap-1.5">
+        <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Behance
       </a>
     </div>
     <nav class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-muted">
@@ -831,6 +841,42 @@
     ['mouseleave', 'touchend'].forEach(evt => reviewsTrack.addEventListener(evt, () => autoScroll = true, { passive: true }));
   }
 
+  // Typewriter effect for hero skills
+  const typewriterEl = document.getElementById('typewriter');
+  if (typewriterEl) {
+    const skills = ['Website Designer', 'UI/UX Designer', 'Brand Designer', 'Graphic Designer'];
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (prefersReduced) {
+      typewriterEl.textContent = skills[0];
+    } else {
+      let skillIndex = 0, charIndex = 0, deleting = false;
+      function typeLoop() {
+        const current = skills[skillIndex];
+        if (!deleting) {
+          charIndex++;
+          typewriterEl.textContent = current.slice(0, charIndex);
+          if (charIndex === current.length) {
+            deleting = true;
+            setTimeout(typeLoop, 1400);
+            return;
+          }
+        } else {
+          charIndex--;
+          typewriterEl.textContent = current.slice(0, charIndex);
+          if (charIndex === 0) {
+            deleting = false;
+            skillIndex = (skillIndex + 1) % skills.length;
+          }
+        }
+        setTimeout(typeLoop, deleting ? 40 : 80);
+      }
+      typeLoop();
+    }
+  }
+
+  // FAQ accordion
+  
   // FAQ accordion
   document.querySelectorAll('.faq-btn').forEach((btn) => {
     btn.addEventListener('click', () => {
