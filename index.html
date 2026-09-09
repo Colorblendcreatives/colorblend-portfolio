@@ -3,30 +3,24 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Colorblend Creative — Websites & Business Systems</title>
+<title>Colorblend Creative — Websites & Systems for Growing Businesses</title>
 <link rel="icon" type="image/jpeg" href="images/logo.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
   tailwind.config = {
     theme: {
       extend: {
         colors: {
-          ink: '#14151A',
-          paper: '#FAFAF7',
-          'paper-2': '#F1EEE6',
-          muted: '#6B685F',
-          line: '#E6E1D4',
-          blue: '#3358FF',
-          pink: '#FF3E8E',
-          amber: '#FFB020',
-          violet: '#8B5CF6',
+          ink: '#0A0A0A',
+          paper: '#FFFFFF',
+          muted: '#666666',
+          line: '#ECECEC',
         },
         fontFamily: {
-          sans: ['Roboto', 'sans-serif'],
-          display: ['"Space Grotesk"', 'sans-serif'],
+          sans: ['Inter', 'sans-serif'],
         },
       },
     },
@@ -34,283 +28,182 @@
 </script>
 <style>
   html { scroll-behavior: smooth; }
-  body { font-family: 'Roboto', sans-serif; color: #14151A; background: #FAFAF7; }
-  h1, h2, h3, .font-display { font-family: 'Space Grotesk', sans-serif; }
-
-  .blend-text {
-    background: linear-gradient(95deg, #3358FF 0%, #8B5CF6 35%, #FF3E8E 70%, #FFB020 100%);
-    -webkit-background-clip: text; background-clip: text; color: transparent;
-  }
-  .shadow-lift { box-shadow: 0 24px 50px -20px rgba(20, 21, 26, 0.35); }
-
+  body { font-family: 'Inter', sans-serif; color: #0A0A0A; background: #FFFFFF; }
+  
   .reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
   .reveal.in { opacity: 1; transform: translateY(0); }
 
-  .img-placeholder {
-    display: flex; align-items: center; justify-content: center;
-    width: 100%; height: 100%;
-    border: 2px dashed #E6E1D4; background: #F1EEE6; color: #6B685F;
-    font-size: 13px; text-align: center; padding: 8px;
-  }
-
   .faq-panel { max-height: 0; overflow: hidden; transition: max-height .4s ease; }
-  .faq-panel.open { max-height: 300px; }
-
-  /* Ambient blended blobs behind the hero - one deliberate moment, not scattered */
-  @keyframes driftA { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(3%,-4%) scale(1.08); } }
-  @keyframes driftB { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-4%,3%) scale(1.05); } }
-  @keyframes driftC { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(2%,4%) scale(1.1); } }
-  .blob-a { animation: driftA 18s ease-in-out infinite; }
-  .blob-b { animation: driftB 22s ease-in-out infinite; }
-  .blob-c { animation: driftC 20s ease-in-out infinite; }
-
-  /* Capability marquee */
-  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-  .marquee-track { display: flex; width: max-content; animation: marquee 28s linear infinite; }
+  .faq-panel.open { max-height: 500px; }
 
   @media (prefers-reduced-motion: reduce) {
-    .blob-a, .blob-b, .blob-c, .marquee-track { animation: none; }
     .reveal { transition: none; opacity: 1; transform: none; }
   }
+
+  /* Minimalist separator line */
+  .separator { height: 1px; background: #ECECEC; }
 </style>
 </head>
 <body class="bg-paper text-ink">
 
-<!-- ============ NAV ============ -->
-<header id="nav" class="fixed top-0 inset-x-0 z-50 transition-all duration-300">
-  <div class="mx-auto max-w-7xl px-5 sm:px-8 h-16 flex items-center justify-between">
-    <a href="#top" class="flex items-center gap-2 font-display font-semibold tracking-tight">
-      <img src="images/logo.jpg" alt="Colorblend Creative logo" class="w-8 h-8 rounded-lg object-contain" />
-      <span class="text-[15px]">Colorblend Creative</span>
+<!-- ============ NAV: MINIMAL LIKE ROBINSON'S ============ -->
+<header id="nav" class="fixed top-0 inset-x-0 z-50 transition-all duration-300 bg-paper">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8 h-16 flex items-center justify-between border-b border-line">
+    <!-- Left: Logo + Name -->
+    <a href="#top" class="flex items-center gap-3 font-semibold text-sm tracking-tight">
+      <img src="images/logo.jpg" alt="Colorblend Creative" class="w-7 h-7 rounded-md object-contain" />
+      <span>Colorblend</span>
     </a>
-    <nav class="hidden md:flex items-center gap-8 text-sm text-muted">
+    
+    <!-- Center: Nav links (hidden on mobile) -->
+    <nav class="hidden md:flex items-center gap-10 text-sm text-muted">
       <a href="#work" class="hover:text-ink transition-colors">Work</a>
       <a href="#services" class="hover:text-ink transition-colors">Services</a>
       <a href="#about" class="hover:text-ink transition-colors">About</a>
       <a href="#process" class="hover:text-ink transition-colors">Process</a>
-      <a href="#reviews" class="hover:text-ink transition-colors">Reviews</a>
       <a href="#faq" class="hover:text-ink transition-colors">FAQ</a>
     </nav>
-    <a href="#contact" class="hidden md:inline-flex items-center gap-2 rounded-full bg-ink text-white px-4 py-2 text-sm font-medium hover:opacity-90 transition-opacity">
-      Contact me →
-    </a>
-    <button id="menuBtn" class="md:hidden p-2 -mr-2" aria-label="Toggle menu">☰</button>
+
+    <!-- Right: CTA + Mobile menu -->
+    <div class="flex items-center gap-4">
+      <a href="#contact" class="hidden md:inline-flex text-sm font-medium hover:text-muted transition-colors">Get in touch</a>
+      <button id="menuBtn" class="md:hidden p-2" aria-label="Toggle menu">☰</button>
+    </div>
   </div>
+
+  <!-- Mobile menu -->
   <div id="mobileMenu" class="hidden md:hidden border-t border-line bg-paper">
-    <div class="px-5 py-4 flex flex-col gap-3">
-      <a href="#work" class="py-2">Work</a>
-      <a href="#services" class="py-2">Services</a>
-      <a href="#about" class="py-2">About</a>
-      <a href="#process" class="py-2">Process</a>
-      <a href="#reviews" class="py-2">Reviews</a>
-      <a href="#faq" class="py-2">FAQ</a>
-      <a href="#contact" class="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-ink text-white px-4 py-3 text-sm font-medium">Contact me →</a>
+    <div class="px-5 py-4 flex flex-col gap-3 text-sm">
+      <a href="#work" class="py-2 hover:text-muted">Work</a>
+      <a href="#services" class="py-2 hover:text-muted">Services</a>
+      <a href="#about" class="py-2 hover:text-muted">About</a>
+      <a href="#process" class="py-2 hover:text-muted">Process</a>
+      <a href="#faq" class="py-2 hover:text-muted">FAQ</a>
+      <a href="#contact" class="mt-4 pt-4 border-t border-line font-medium hover:text-muted">Get in touch</a>
     </div>
   </div>
 </header>
 
 <main>
 
-<!-- ============ HERO ============ -->
-<section id="top" class="relative pt-32 sm:pt-40 pb-16 overflow-hidden">
-  <div aria-hidden class="pointer-events-none absolute inset-0 -z-10">
-    <div class="blob-a absolute -top-10 left-[8%] w-72 h-72 rounded-full bg-blue/30 blur-3xl"></div>
-    <div class="blob-b absolute top-24 right-[10%] w-80 h-80 rounded-full bg-pink/25 blur-3xl"></div>
-    <div class="blob-c absolute top-64 left-[35%] w-64 h-64 rounded-full bg-amber/25 blur-3xl"></div>
-  </div>
-
-  <div class="mx-auto max-w-5xl px-5 sm:px-8">
-    <div class="inline-flex items-center gap-2 rounded-full border border-line bg-white/70 backdrop-blur px-3 py-1.5 text-xs text-muted">
-      <span class="relative flex h-1.5 w-1.5">
-        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-pink opacity-75"></span>
-        <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-pink"></span>
-      </span>
-      Open for new projects
+<!-- ============ HERO: BOLD, MINIMAL ============ -->
+<section id="top" class="pt-32 sm:pt-40 pb-24 sm:pb-32 px-5 sm:px-8">
+  <div class="mx-auto max-w-4xl">
+    <!-- Status badge -->
+    <div class="inline-flex items-center gap-2 text-xs font-medium text-muted mb-8">
+      <span class="inline-flex h-2 w-2 rounded-full bg-ink"></span>
+      Available for projects
     </div>
 
-    <h1 class="mt-6 font-display text-[40px] leading-[1.08] sm:text-6xl lg:text-[68px] font-bold tracking-tight max-w-4xl">
-      Websites and business systems that help you <span class="blend-text">win more clients</span>.
+    <!-- Hero headline with strategic line breaks -->
+    <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight mb-6">
+      Web design<br/>
+      & business<br/>
+      systems.
     </h1>
-    <p class="mt-6 max-w-xl text-lg text-muted leading-relaxed">
-      Colorblend Creative designs and builds professional websites, client portals, dashboards and custom
-      web applications for businesses that want to look and operate like the best in their field.
+
+    <!-- Subheading -->
+    <p class="text-lg sm:text-xl text-muted leading-relaxed max-w-2xl mb-10">
+      I design and build professional websites, client portals, and custom systems for businesses that want to operate like the best in their field.
     </p>
-    <div class="mt-8 flex flex-wrap items-center gap-3">
-      <a href="#contact" class="inline-flex items-center gap-2 rounded-full bg-ink text-white px-6 py-3.5 text-sm font-medium shadow-lift hover:-translate-y-0.5 transition-all">
-        Book a Free Consultation
+
+    <!-- CTA Buttons -->
+    <div class="flex flex-wrap gap-4 mb-16">
+      <a href="#contact" class="inline-flex items-center gap-2 px-6 py-3.5 bg-ink text-white rounded-lg text-sm font-medium hover:opacity-90 transition-opacity">
+        Start a project →
       </a>
-      <a href="#work" class="inline-flex items-center gap-2 rounded-full border border-line bg-white/60 text-ink px-6 py-3.5 text-sm font-medium hover:border-ink/30 transition-colors">
-        View My Work
+      <a href="#work" class="inline-flex items-center gap-2 px-6 py-3.5 border border-line text-ink rounded-lg text-sm font-medium hover:border-ink transition-colors">
+        View work
       </a>
     </div>
 
-    <div class="mt-10 flex flex-wrap items-center gap-6 text-xs text-muted">
-      <div class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-blue"></i> Reply within 24h</div>
-      <div class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-pink"></i> Fixed-scope proposals</div>
-    </div>
-
-    <div class="mt-16 flex flex-wrap gap-4">
-      <div class="rounded-2xl bg-white/70 backdrop-blur border border-line px-6 py-5">
-        <div class="font-display text-2xl font-semibold">30+</div>
-        <div class="mt-1 text-xs text-muted">Projects delivered across industries</div>
+    <!-- Stats -->
+    <div class="flex flex-wrap gap-8 text-sm">
+      <div>
+        <div class="font-bold text-2xl">30+</div>
+        <div class="text-muted">Projects delivered</div>
       </div>
-      <div class="rounded-2xl bg-white/70 backdrop-blur border border-line px-6 py-5">
-        <div class="font-display text-2xl font-semibold">3–5 wks</div>
-        <div class="mt-1 text-xs text-muted">From kickoff to launch</div>
+      <div>
+        <div class="font-bold text-2xl">3–5 wks</div>
+        <div class="text-muted">Average timeline</div>
       </div>
-      <div class="rounded-2xl bg-white/70 backdrop-blur border border-line px-6 py-5">
-        <div class="font-display text-2xl font-semibold">24h</div>
-        <div class="mt-1 text-xs text-muted">Response time on every inquiry</div>
+      <div>
+        <div class="font-bold text-2xl">100%</div>
+        <div class="text-muted">Client satisfaction</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ CAPABILITY MARQUEE ============ -->
-<section class="border-y border-line bg-ink text-white overflow-hidden">
-  <div class="py-5">
-    <div class="marquee-track text-sm font-medium tracking-wide">
-      <div class="flex items-center gap-3 pr-3 shrink-0">
-        <span>Custom Web Development</span><span class="text-blue">◆</span>
-        <span>UI/UX Design</span><span class="text-pink">◆</span>
-        <span>Business Systems</span><span class="text-amber">◆</span>
-        <span>Branding</span><span class="text-violet">◆</span>
-        <span>Responsive Websites</span><span class="text-blue">◆</span>
-        <span>Fast Delivery</span><span class="text-pink">◆</span>
-      </div>
-      <div class="flex items-center gap-3 pr-3 shrink-0" aria-hidden="true">
-        <span>Custom Web Development</span><span class="text-blue">◆</span>
-        <span>UI/UX Design</span><span class="text-pink">◆</span>
-        <span>Business Systems</span><span class="text-amber">◆</span>
-        <span>Branding</span><span class="text-violet">◆</span>
-        <span>Responsive Websites</span><span class="text-blue">◆</span>
-        <span>Fast Delivery</span><span class="text-pink">◆</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ PROJECTS ============ -->
-<section id="work" class="py-24 sm:py-32">
-  <div class="mx-auto max-w-6xl px-5 sm:px-8">
-    <div class="max-w-2xl reveal">
-      <div class="font-display text-sm text-muted">Selected work</div>
-      <h2 class="mt-3 font-display text-3xl sm:text-5xl font-semibold tracking-tight">
-        Real projects for real businesses.
+<!-- ============ PROJECTS: CLEAN & MINIMAL ============ -->
+<section id="work" class="py-24 sm:py-32 px-5 sm:px-8 border-t border-line">
+  <div class="mx-auto max-w-5xl">
+    <div class="mb-16 reveal">
+      <div class="text-xs uppercase tracking-widest text-muted font-medium mb-3">Selected work</div>
+      <h2 class="text-4xl sm:text-5xl font-bold leading-tight mb-6">
+        Real projects.<br/>Real results.
       </h2>
-      <p class="mt-4 text-lg text-muted leading-relaxed">
-        A look at recent work across industries, from SaaS to crypto to ecommerce. Click any project to visit the live site.
+      <p class="text-lg text-muted max-w-2xl">
+        A sampling of recent work across industries. Each project tackles a real business challenge.
       </p>
     </div>
 
-    <div class="mt-16 flex flex-col" id="projectsGrid">
+    <div class="space-y-20" id="projectsGrid">
 
-      <!-- Project 1: Quotely -->
-      <a href="https://quotely.com.ng" target="_blank" rel="noopener" class="group reveal grid md:grid-cols-12 gap-6 md:gap-10 items-center py-10 border-b border-line">
-        <div class="md:col-span-5 order-2 md:order-1">
-          <div class="font-display text-4xl text-blue/70">01</div>
-          <h3 class="mt-3 font-display text-2xl sm:text-3xl font-semibold flex items-center gap-2">
-            Quotely
-            <i data-lucide="arrow-up-right" class="w-5 h-5 text-muted group-hover:text-blue transition-colors"></i>
-          </h3>
-          <div class="mt-1 text-sm text-muted">SaaS for service businesses</div>
-          <p class="mt-4 text-sm text-ink/80 leading-relaxed">Service businesses were losing deals because quoting felt slow, inconsistent and unprofessional. I built a multi-tenant quotation platform with branded PDFs, client portals, follow-ups and analytics, end to end.</p>
-          <div class="mt-5 flex flex-wrap gap-2">
-            <span class="text-xs px-2.5 py-1 rounded-full bg-blue/10 text-blue">PHP</span>
-            <span class="text-xs px-2.5 py-1 rounded-full bg-blue/10 text-blue">MySQL</span>
-          </div>
-          <div class="mt-5 text-sm font-medium">Result: Onboarded businesses in early access.</div>
+      <!-- PROJECT 1 -->
+      <a href="https://quotely.com.ng" target="_blank" rel="noopener" class="group reveal block">
+        <div class="rounded-lg overflow-hidden mb-6 bg-line aspect-[16/10]">
+          <img src="images/quotely.webp" alt="Quotely" class="w-full h-full object-cover group-hover:opacity-90 transition-opacity" />
         </div>
-        <div class="md:col-span-7 order-1 md:order-2 rounded-2xl overflow-hidden aspect-[16/11] bg-paper-2 group-hover:-translate-y-1 transition-transform duration-500">
-          <img src="images/quotely.webp" alt="Quotely" class="w-full h-full object-cover" />
+        <h3 class="text-2xl sm:text-3xl font-bold mb-2 flex items-center gap-2">
+          Quotely
+          <svg class="w-5 h-5 text-muted group-hover:text-ink transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L1 10m0 0l6 6"></path>
+          </svg>
+        </h3>
+        <p class="text-muted mb-4">SaaS platform for service businesses to create branded quotations, manage client portals, and track follow-ups.</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="text-xs px-3 py-1.5 bg-line text-ink rounded-full">PHP</span>
+          <span class="text-xs px-3 py-1.5 bg-line text-ink rounded-full">MySQL</span>
+          <span class="text-xs px-3 py-1.5 bg-line text-ink rounded-full">SaaS</span>
         </div>
       </a>
 
-      <!-- Project 2: Noblebabies & Bumps -->
-      <a href="https://dev-noblebabiesandbump.pantheonsite.io/" target="_blank" rel="noopener" class="group reveal grid md:grid-cols-12 gap-6 md:gap-10 items-center py-10 border-b border-line">
-        <div class="md:col-span-7 rounded-2xl overflow-hidden aspect-[16/11] bg-paper-2 group-hover:-translate-y-1 transition-transform duration-500">
-          <img src="images/noblebabies.webp" alt="Noblebabies & Bumps" class="w-full h-full object-cover" />
+      <!-- PROJECT 2 -->
+      <a href="https://dev-noblebabiesandbump.pantheonsite.io/" target="_blank" rel="noopener" class="group reveal block">
+        <div class="rounded-lg overflow-hidden mb-6 bg-line aspect-[16/10]">
+          <img src="images/noblebabies.webp" alt="Noblebabies & Bumps" class="w-full h-full object-cover group-hover:opacity-90 transition-opacity" />
         </div>
-        <div class="md:col-span-5">
-          <div class="font-display text-4xl text-pink/70">02</div>
-          <h3 class="mt-3 font-display text-2xl sm:text-3xl font-semibold flex items-center gap-2">
-            Noblebabies & Bumps
-            <i data-lucide="arrow-up-right" class="w-5 h-5 text-muted group-hover:text-pink transition-colors"></i>
-          </h3>
-          <div class="mt-1 text-sm text-muted">Ecommerce for baby & maternity products</div>
-          <p class="mt-4 text-sm text-ink/80 leading-relaxed">The client needed a full online store built from scratch, with no existing site to work from. Designed and built the entire store on WordPress, from product catalog and checkout to layout and branding.</p>
-          <div class="mt-5 flex flex-wrap gap-2">
-            <span class="text-xs px-2.5 py-1 rounded-full bg-pink/10 text-pink">WordPress</span>
-            <span class="text-xs px-2.5 py-1 rounded-full bg-pink/10 text-pink">WooCommerce</span>
-            <span class="text-xs px-2.5 py-1 rounded-full bg-pink/10 text-pink">Elementor</span>
-          </div>
-          <div class="mt-5 text-sm font-medium">Result: A fully functional online store, live and ready to sell.</div>
+        <h3 class="text-2xl sm:text-3xl font-bold mb-2 flex items-center gap-2">
+          Noblebabies & Bumps
+          <svg class="w-5 h-5 text-muted group-hover:text-ink transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L1 10m0 0l6 6"></path>
+          </svg>
+        </h3>
+        <p class="text-muted mb-4">Full ecommerce site for baby and maternity products. Designed and built from scratch with product catalog, checkout, and branding.</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="text-xs px-3 py-1.5 bg-line text-ink rounded-full">WordPress</span>
+          <span class="text-xs px-3 py-1.5 bg-line text-ink rounded-full">WooCommerce</span>
+          <span class="text-xs px-3 py-1.5 bg-line text-ink rounded-full">Elementor</span>
         </div>
       </a>
 
-      <!-- Project 3: Buffpepe -->
-      <a href="https://buffpepe.io/" target="_blank" rel="noopener" class="group reveal grid md:grid-cols-12 gap-6 md:gap-10 items-center py-10 border-b border-line">
-        <div class="md:col-span-5 order-2 md:order-1">
-          <div class="font-display text-4xl text-amber/70">03</div>
-          <h3 class="mt-3 font-display text-2xl sm:text-3xl font-semibold flex items-center gap-2">
-            Buffpepe
-            <i data-lucide="arrow-up-right" class="w-5 h-5 text-muted group-hover:text-amber transition-colors"></i>
-          </h3>
-          <div class="mt-1 text-sm text-muted">Memecoin marketing landing page</div>
-          <p class="mt-4 text-sm text-ink/80 leading-relaxed">Needed a fast, attention-grabbing landing page to promote the coin and drive people to buy in. Built a bold, high-energy single-page site with tokenomics, roadmap and social links.</p>
-          <div class="mt-5 flex flex-wrap gap-2">
-            <span class="text-xs px-2.5 py-1 rounded-full bg-amber/10 text-amber">HTML</span>
-            <span class="text-xs px-2.5 py-1 rounded-full bg-amber/10 text-amber">CSS</span>
-            <span class="text-xs px-2.5 py-1 rounded-full bg-amber/10 text-amber">JavaScript</span>
-          </div>
-          <div class="mt-5 text-sm font-medium">Result: Live landing page used for the coin's community launch.</div>
+      <!-- PROJECT 3 -->
+      <a href="https://buffpepe.io/" target="_blank" rel="noopener" class="group reveal block">
+        <div class="rounded-lg overflow-hidden mb-6 bg-line aspect-[16/10]">
+          <img src="images/buffpepe.webp" alt="Buffpepe" class="w-full h-full object-cover group-hover:opacity-90 transition-opacity" />
         </div>
-        <div class="md:col-span-7 order-1 md:order-2 rounded-2xl overflow-hidden aspect-[16/11] bg-paper-2 group-hover:-translate-y-1 transition-transform duration-500">
-          <img src="images/buffpepe.webp" alt="Buffpepe" class="w-full h-full object-cover" />
-        </div>
-      </a>
-
-      <!-- Project 4: Saffrongas -->
-      <a href="https://colorblendcreatives.github.io/Saffrongas/" target="_blank" rel="noopener" class="group reveal grid md:grid-cols-12 gap-6 md:gap-10 items-center py-10 border-b border-line">
-        <div class="md:col-span-7 rounded-2xl overflow-hidden aspect-[16/11] bg-paper-2 group-hover:-translate-y-1 transition-transform duration-500">
-          <img src="images/saffrongas.webp" alt="Saffrongas" class="w-full h-full object-cover" />
-        </div>
-        <div class="md:col-span-5">
-          <div class="font-display text-4xl text-violet/70">04</div>
-          <h3 class="mt-3 font-display text-2xl sm:text-3xl font-semibold flex items-center gap-2">
-            Saffrongas
-            <i data-lucide="arrow-up-right" class="w-5 h-5 text-muted group-hover:text-violet transition-colors"></i>
-          </h3>
-          <div class="mt-1 text-sm text-muted">Gas & energy service website</div>
-          <p class="mt-4 text-sm text-ink/80 leading-relaxed">Needed a professional website to present their gas service to customers and make it easy to get in touch. Hand-coded a clean, fast site covering services, pricing and contact.</p>
-          <div class="mt-5 flex flex-wrap gap-2">
-            <span class="text-xs px-2.5 py-1 rounded-full bg-violet/10 text-violet">HTML</span>
-            <span class="text-xs px-2.5 py-1 rounded-full bg-violet/10 text-violet">CSS</span>
-            <span class="text-xs px-2.5 py-1 rounded-full bg-violet/10 text-violet">JavaScript</span>
-          </div>
-          <div class="mt-5 text-sm font-medium">Result: A live, professional site representing the business online.</div>
-        </div>
-      </a>
-
-      <!-- Project 5: Quickplaycoin -->
-      <a href="https://quickplaycoin.xyz/" target="_blank" rel="noopener" class="group reveal grid md:grid-cols-12 gap-6 md:gap-10 items-center py-10">
-        <div class="md:col-span-5 order-2 md:order-1">
-          <div class="font-display text-4xl text-blue/70">05</div>
-          <h3 class="mt-3 font-display text-2xl sm:text-3xl font-semibold flex items-center gap-2">
-            Quickplaycoin
-            <i data-lucide="arrow-up-right" class="w-5 h-5 text-muted group-hover:text-blue transition-colors"></i>
-          </h3>
-          <div class="mt-1 text-sm text-muted">Memecoin marketing landing page</div>
-          <p class="mt-4 text-sm text-ink/80 leading-relaxed">Needed a landing page to advertise the coin and build early hype ahead of launch. Designed a punchy, gaming-themed single-page site highlighting the coin's use case and community links.</p>
-          <div class="mt-5 flex flex-wrap gap-2">
-            <span class="text-xs px-2.5 py-1 rounded-full bg-blue/10 text-blue">HTML</span>
-            <span class="text-xs px-2.5 py-1 rounded-full bg-blue/10 text-blue">CSS</span>
-            <span class="text-xs px-2.5 py-1 rounded-full bg-blue/10 text-blue">JavaScript</span>
-          </div>
-          <div class="mt-5 text-sm font-medium">Result: Live landing page used to advertise the coin.</div>
-        </div>
-        <div class="md:col-span-7 order-1 md:order-2 rounded-2xl overflow-hidden aspect-[16/11] bg-paper-2 group-hover:-translate-y-1 transition-transform duration-500">
-          <img src="images/quickplaycoin.webp" alt="Quickplaycoin" class="w-full h-full object-cover" />
+        <h3 class="text-2xl sm:text-3xl font-bold mb-2 flex items-center gap-2">
+          Buffpepe
+          <svg class="w-5 h-5 text-muted group-hover:text-ink transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L1 10m0 0l6 6"></path>
+          </svg>
+        </h3>
+        <p class="text-muted mb-4">Fast, high-energy landing page for memecoin marketing. Features tokenomics, roadmap, and community links.</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="text-xs px-3 py-1.5 bg-line text-ink rounded-full">HTML</span>
+          <span class="text-xs px-3 py-1.5 bg-line text-ink rounded-full">CSS</span>
+          <span class="text-xs px-3 py-1.5 bg-line text-ink rounded-full">JavaScript</span>
         </div>
       </a>
 
@@ -318,398 +211,290 @@
   </div>
 </section>
 
-<!-- ============ SERVICES ============ -->
-<section id="services" class="py-24 sm:py-32 bg-paper-2 border-y border-line">
-  <div class="mx-auto max-w-6xl px-5 sm:px-8">
-    <div class="max-w-2xl reveal">
-      <div class="font-display text-sm text-muted">Services</div>
-      <h2 class="mt-3 font-display text-3xl sm:text-5xl font-semibold tracking-tight">
-        Everything you need to look, and operate, like the best.
+<!-- ============ SERVICES: SIMPLE, ELEGANT ============ -->
+<section id="services" class="py-24 sm:py-32 px-5 sm:px-8 border-t border-line bg-paper">
+  <div class="mx-auto max-w-5xl">
+    <div class="mb-16 reveal">
+      <div class="text-xs uppercase tracking-widest text-muted font-medium mb-3">Services</div>
+      <h2 class="text-4xl sm:text-5xl font-bold leading-tight mb-6">
+        What I build.
       </h2>
-      <p class="mt-4 text-lg text-muted leading-relaxed">
-        Design, development and custom systems, tailored to businesses that care about how they show up.
-      </p>
     </div>
 
-    <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      <div class="reveal rounded-3xl p-7 text-white bg-blue min-h-[220px] flex flex-col justify-between" style="transition-delay:0ms;">
-        <i data-lucide="layout" class="w-6 h-6"></i>
-        <div>
-          <h3 class="mt-6 font-display text-lg font-semibold">Business Websites</h3>
-          <p class="mt-2 text-sm text-white/80 leading-relaxed">Sites that turn visitors into qualified leads, not just online brochures.</p>
+    <div class="grid sm:grid-cols-2 gap-8">
+      <!-- Service 1 -->
+      <div class="reveal border border-line rounded-lg p-8">
+        <div class="mb-6">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
         </div>
+        <h3 class="text-xl font-bold mb-3">Business Websites</h3>
+        <p class="text-muted text-sm leading-relaxed">Professional sites that convert visitors into leads. From branding to checkout, every detail purposeful.</p>
       </div>
-      <div class="reveal rounded-3xl p-7 text-white bg-violet min-h-[220px] flex flex-col justify-between" style="transition-delay:80ms;">
-        <i data-lucide="pen-tool" class="w-6 h-6"></i>
-        <div>
-          <h3 class="mt-6 font-display text-lg font-semibold">UI/UX Design</h3>
-          <p class="mt-2 text-sm text-white/80 leading-relaxed">Interfaces your customers understand instantly and enjoy using.</p>
+
+      <!-- Service 2 -->
+      <div class="reveal border border-line rounded-lg p-8">
+        <div class="mb-6">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
+          </svg>
         </div>
+        <h3 class="text-xl font-bold mb-3">UI/UX Design</h3>
+        <p class="text-muted text-sm leading-relaxed">Interfaces that users understand instantly. Clean, intuitive, and focused on solving real problems.</p>
       </div>
-      <div class="reveal rounded-3xl p-7 text-white bg-pink min-h-[220px] flex flex-col justify-between" style="transition-delay:160ms;">
-        <i data-lucide="palette" class="w-6 h-6"></i>
-        <div>
-          <h3 class="mt-6 font-display text-lg font-semibold">Branding</h3>
-          <p class="mt-2 text-sm text-white/80 leading-relaxed">Logos, colors and visual identity that make a business feel established.</p>
+
+      <!-- Service 3 -->
+      <div class="reveal border border-line rounded-lg p-8">
+        <div class="mb-6">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4m0 0l-4 4m4-4H3"></path>
+          </svg>
         </div>
+        <h3 class="text-xl font-bold mb-3">Custom Systems</h3>
+        <p class="text-muted text-sm leading-relaxed">Client portals, dashboards, and SaaS platforms. Built on PHP, MySQL, and modern architecture.</p>
       </div>
-      <div class="reveal rounded-3xl p-7 text-ink bg-amber min-h-[220px] flex flex-col justify-between" style="transition-delay:240ms;">
-        <i data-lucide="rocket" class="w-6 h-6"></i>
-        <div>
-          <h3 class="mt-6 font-display text-lg font-semibold">Landing Pages</h3>
-          <p class="mt-2 text-sm text-ink/70 leading-relaxed">High-converting pages built around a single offer and a single action.</p>
+
+      <!-- Service 4 -->
+      <div class="reveal border border-line rounded-lg p-8">
+        <div class="mb-6">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+          </svg>
         </div>
+        <h3 class="text-xl font-bold mb-3">Fast Delivery</h3>
+        <p class="text-muted text-sm leading-relaxed">From kickoff to launch in 3–5 weeks. Fixed scope, clear timeline, no surprises.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ ABOUT ============ -->
-<section id="about" class="py-24 sm:py-32 overflow-hidden">
-  <div class="mx-auto max-w-6xl px-5 sm:px-8">
-    <div class="grid lg:grid-cols-12 gap-12 items-start">
-      <div class="lg:col-span-5 reveal">
-        <div class="font-display text-sm text-muted">About</div>
-        <h2 class="mt-3 font-display text-3xl sm:text-5xl font-semibold tracking-tight blend-text">
-          A designer who ships.
-        </h2>
-      </div>
-      <div class="lg:col-span-7 reveal">
-        <p class="text-lg leading-relaxed text-ink/90">
-          I'm the designer and developer behind <span class="font-semibold">Colorblend Creative</span>.
-          I work solo, which means the person you talk to is the person designing, building and shipping your project,
-          with no handoffs and nothing lost in translation.
+<!-- ============ ABOUT: PERSONAL & CREDIBLE ============ -->
+<section id="about" class="py-24 sm:py-32 px-5 sm:px-8 border-t border-line">
+  <div class="mx-auto max-w-5xl">
+    <div class="reveal mb-12">
+      <div class="text-xs uppercase tracking-widest text-muted font-medium mb-3">About</div>
+      <h2 class="text-4xl sm:text-5xl font-bold leading-tight mb-8">
+        Freelance developer,<br/>designer & architect student.
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div class="reveal space-y-6 text-lg text-muted leading-relaxed">
+        <p>
+          I'm a freelance web developer and UI/UX designer operating under <strong class="text-ink">Colorblend Creative</strong>. For the past few years, I've been building professional websites, custom business systems, and digital experiences for growing businesses across industries.
         </p>
-        <p class="mt-4 text-lg leading-relaxed text-muted">
-          I'm also an architecture student, and that background shows up in how I approach the web: structure,
-          proportion and how a space (or a screen) actually gets used, before it's ever about decoration. On the
-          technical side, I build with HTML, CSS, JavaScript and PHP/MySQL, so I can take a project from a clean
-          interface all the way to a working system behind it, and stay on hand after launch to keep it running well.
+        <p>
+          I also teach UI/UX design to aspiring designers and am currently studying Architecture at Obafemi Awolowo University in Nigeria.
+        </p>
+        <p>
+          I work across WordPress, custom PHP/MySQL development, React, and modern web technologies. My focus is always on creating solutions that are not just beautiful, but solve real business problems.
         </p>
       </div>
+
+      <div class="reveal space-y-6">
+        <div class="rounded-lg bg-line aspect-square"></div>
+        <p class="text-sm text-muted">Freelancing since 2019 • Based in Nigeria</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ============ PROCESS ============ -->
-<section id="process" class="py-24 sm:py-32 bg-ink text-white">
-  <div class="mx-auto max-w-6xl px-5 sm:px-8">
-    <div class="max-w-2xl reveal">
-      <div class="font-display text-sm text-white/60">Process</div>
-      <h2 class="mt-3 font-display text-3xl sm:text-5xl font-semibold tracking-tight">
-        A calm, predictable path from idea to launch.
+<!-- ============ PROCESS: HOW I WORK ============ -->
+<section id="process" class="py-24 sm:py-32 px-5 sm:px-8 border-t border-line bg-paper">
+  <div class="mx-auto max-w-5xl">
+    <div class="reveal mb-16">
+      <div class="text-xs uppercase tracking-widest text-muted font-medium mb-3">Process</div>
+      <h2 class="text-4xl sm:text-5xl font-bold leading-tight">
+        How I work.
       </h2>
-      <p class="mt-4 text-lg text-white/60 leading-relaxed">Six steps. Clear deliverables. No surprises.</p>
     </div>
 
-    <ol class="mt-16 relative border-l border-white/15 ml-3">
-      <li class="reveal relative pl-10 pb-12">
-        <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-blue"></div>
-        <div class="font-display text-sm text-white/50">01</div>
-        <h3 class="mt-1 font-display text-2xl font-semibold">Discover</h3>
-        <p class="mt-2 text-sm text-white/60 leading-relaxed max-w-md">Understand your business, goals and audience.</p>
-      </li>
-      <li class="reveal relative pl-10 pb-12">
-        <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-violet"></div>
-        <div class="font-display text-sm text-white/50">02</div>
-        <h3 class="mt-1 font-display text-2xl font-semibold">Plan</h3>
-        <p class="mt-2 text-sm text-white/60 leading-relaxed max-w-md">Scope, sitemap and success metrics.</p>
-      </li>
-      <li class="reveal relative pl-10 pb-12">
-        <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-pink"></div>
-        <div class="font-display text-sm text-white/50">03</div>
-        <h3 class="mt-1 font-display text-2xl font-semibold">Design</h3>
-        <p class="mt-2 text-sm text-white/60 leading-relaxed max-w-md">Wireframes, then premium visual design.</p>
-      </li>
-      <li class="reveal relative pl-10 pb-12">
-        <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-amber"></div>
-        <div class="font-display text-sm text-white/50">04</div>
-        <h3 class="mt-1 font-display text-2xl font-semibold">Develop</h3>
-        <p class="mt-2 text-sm text-white/60 leading-relaxed max-w-md">Clean, fast, maintainable build.</p>
-      </li>
-      <li class="reveal relative pl-10 pb-12">
-        <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-blue"></div>
-        <div class="font-display text-sm text-white/50">05</div>
-        <h3 class="mt-1 font-display text-2xl font-semibold">Launch</h3>
-        <p class="mt-2 text-sm text-white/60 leading-relaxed max-w-md">Deploy, QA and go live with confidence.</p>
-      </li>
-      <li class="reveal relative pl-10">
-        <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-violet"></div>
-        <div class="font-display text-sm text-white/50">06</div>
-        <h3 class="mt-1 font-display text-2xl font-semibold">Support</h3>
-        <p class="mt-2 text-sm text-white/60 leading-relaxed max-w-md">Ongoing improvements and reliable maintenance.</p>
-      </li>
-    </ol>
-  </div>
-</section>
-
-<!-- ============ REVIEWS ============ -->
-<!-- Drop your review images into /images as review-1.png ... review-8.png (or update the src paths below). -->
-<!-- Missing images fall back to a placeholder automatically. Cards auto-scroll and pause on hover/touch. -->
-<section id="reviews" class="py-24 sm:py-32 overflow-hidden">
-  <div class="mx-auto max-w-6xl px-5 sm:px-8">
-    <div class="max-w-2xl reveal">
-      <div class="font-display text-sm text-muted">Client Feedback</div>
-      <h2 class="mt-3 font-display text-3xl sm:text-5xl font-semibold tracking-tight">
-        What clients say after we ship.
-      </h2>
-      <p class="mt-4 text-lg text-muted leading-relaxed">
-        Real reviews from real Fiverr clients, screenshotted straight from my profile.
-      </p>
-    </div>
-  </div>
-
-  <div class="mt-14 reveal">
-    <div id="reviewsTrack" class="flex gap-5 overflow-x-auto px-5 sm:px-8 pb-4 snap-x snap-mandatory scroll-smooth [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-
-      <div class="snap-start shrink-0 w-[300px] rounded-2xl overflow-hidden bg-white">
-        <div class="h-1.5 bg-blue"></div>
-        <div class="review-thumb aspect-[4/3] bg-paper-2">
-          <img src="images/review-1.png" alt="Client review 1" class="w-full h-full object-contain"
-               onerror="this.closest('.review-thumb').innerHTML = '&lt;div class=&quot;img-placeholder&quot;&gt;Add review-1.png&lt;/div&gt;'" />
-        </div>
+    <div class="space-y-12">
+      <!-- Step 1 -->
+      <div class="reveal border-l-2 border-line pl-8">
+        <div class="text-xs uppercase tracking-widest text-muted font-medium mb-2">01. Understand</div>
+        <h3 class="text-2xl font-bold mb-3">Discovery call & brief</h3>
+        <p class="text-muted leading-relaxed">We start with a conversation. I learn about your business, your goals, your audience, and what success looks like for you.</p>
       </div>
 
-      <div class="snap-start shrink-0 w-[300px] rounded-2xl overflow-hidden bg-white">
-        <div class="h-1.5 bg-pink"></div>
-        <div class="review-thumb aspect-[4/3] bg-paper-2">
-          <img src="images/review-2.png" alt="Client review 2" class="w-full h-full object-contain"
-               onerror="this.closest('.review-thumb').innerHTML = '&lt;div class=&quot;img-placeholder&quot;&gt;Add review-2.png&lt;/div&gt;'" />
-        </div>
+      <!-- Step 2 -->
+      <div class="reveal border-l-2 border-line pl-8">
+        <div class="text-xs uppercase tracking-widest text-muted font-medium mb-2">02. Design</div>
+        <h3 class="text-2xl font-bold mb-3">Wireframes & visual design</h3>
+        <p class="text-muted leading-relaxed">I create wireframes to map out functionality, then design the visual direction. You approve before any code is written.</p>
       </div>
 
-      <div class="snap-start shrink-0 w-[300px] rounded-2xl overflow-hidden bg-white">
-        <div class="h-1.5 bg-amber"></div>
-        <div class="review-thumb aspect-[4/3] bg-paper-2">
-          <img src="images/review-3.png" alt="Client review 3" class="w-full h-full object-contain"
-               onerror="this.closest('.review-thumb').innerHTML = '&lt;div class=&quot;img-placeholder&quot;&gt;Add review-3.png&lt;/div&gt;'" />
-        </div>
+      <!-- Step 3 -->
+      <div class="reveal border-l-2 border-line pl-8">
+        <div class="text-xs uppercase tracking-widest text-muted font-medium mb-2">03. Build</div>
+        <h3 class="text-2xl font-bold mb-3">Development & launch</h3>
+        <p class="text-muted leading-relaxed">I code your solution from the ground up. You get updates along the way. Launch happens on your timeline.</p>
       </div>
 
-      <div class="snap-start shrink-0 w-[300px] rounded-2xl overflow-hidden bg-white">
-        <div class="h-1.5 bg-violet"></div>
-        <div class="review-thumb aspect-[4/3] bg-paper-2">
-          <img src="images/review-4.png" alt="Client review 4" class="w-full h-full object-contain"
-               onerror="this.closest('.review-thumb').innerHTML = '&lt;div class=&quot;img-placeholder&quot;&gt;Add review-4.png&lt;/div&gt;'" />
-        </div>
+      <!-- Step 4 -->
+      <div class="reveal border-l-2 border-line pl-8">
+        <div class="text-xs uppercase tracking-widest text-muted font-medium mb-2">04. Support</div>
+        <h3 class="text-2xl font-bold mb-3">Maintenance & updates</h3>
+        <p class="text-muted leading-relaxed">After launch, I provide support, fixes, and updates. Your site is always running smoothly.</p>
       </div>
-
-      <div class="snap-start shrink-0 w-[300px] rounded-2xl overflow-hidden bg-white">
-        <div class="h-1.5 bg-blue"></div>
-        <div class="review-thumb aspect-[4/3] bg-paper-2">
-          <img src="images/review-5.png" alt="Client review 5" class="w-full h-full object-contain"
-               onerror="this.closest('.review-thumb').innerHTML = '&lt;div class=&quot;img-placeholder&quot;&gt;Add review-5.png&lt;/div&gt;'" />
-        </div>
-      </div>
-
-      <div class="snap-start shrink-0 w-[300px] rounded-2xl overflow-hidden bg-white">
-        <div class="h-1.5 bg-pink"></div>
-        <div class="review-thumb aspect-[4/3] bg-paper-2">
-          <img src="images/review-6.png" alt="Client review 6" class="w-full h-full object-contain"
-               onerror="this.closest('.review-thumb').innerHTML = '&lt;div class=&quot;img-placeholder&quot;&gt;Add review-6.png&lt;/div&gt;'" />
-        </div>
-      </div>
-
-      <div class="snap-start shrink-0 w-[300px] rounded-2xl overflow-hidden bg-white">
-        <div class="h-1.5 bg-amber"></div>
-        <div class="review-thumb aspect-[4/3] bg-paper-2">
-          <img src="images/review-7.png" alt="Client review 7" class="w-full h-full object-contain"
-               onerror="this.closest('.review-thumb').innerHTML = '&lt;div class=&quot;img-placeholder&quot;&gt;Add review-7.png&lt;/div&gt;'" />
-        </div>
-      </div>
-
-      <div class="snap-start shrink-0 w-[300px] rounded-2xl overflow-hidden bg-white">
-        <div class="h-1.5 bg-violet"></div>
-        <div class="review-thumb aspect-[4/3] bg-paper-2">
-          <img src="images/review-8.png" alt="Client review 8" class="w-full h-full object-contain"
-               onerror="this.closest('.review-thumb').innerHTML = '&lt;div class=&quot;img-placeholder&quot;&gt;Add review-8.png&lt;/div&gt;'" />
-        </div>
-      </div>
-
-    </div>
-
-    <div class="mt-6 flex items-center justify-center gap-3">
-      <button id="reviewsPrev" aria-label="Scroll left" class="w-10 h-10 rounded-full border border-line bg-white grid place-items-center hover:border-ink/30 transition-colors">
-        <i data-lucide="arrow-left" class="w-4 h-4"></i>
-      </button>
-      <button id="reviewsNext" aria-label="Scroll right" class="w-10 h-10 rounded-full border border-line bg-white grid place-items-center hover:border-ink/30 transition-colors">
-        <i data-lucide="arrow-right" class="w-4 h-4"></i>
-      </button>
     </div>
   </div>
 </section>
 
 <!-- ============ FAQ ============ -->
-<section id="faq" class="py-24 sm:py-32 bg-paper-2 border-y border-line">
-  <div class="mx-auto max-w-4xl px-5 sm:px-8">
-    <div class="max-w-2xl reveal">
-      <div class="font-display text-sm text-muted">FAQ</div>
-      <h2 class="mt-3 font-display text-3xl sm:text-5xl font-semibold tracking-tight">
-        The questions clients usually ask.
+<section id="faq" class="py-24 sm:py-32 px-5 sm:px-8 border-t border-line">
+  <div class="mx-auto max-w-3xl">
+    <div class="reveal mb-16">
+      <div class="text-xs uppercase tracking-widest text-muted font-medium mb-3">FAQ</div>
+      <h2 class="text-4xl sm:text-5xl font-bold leading-tight">
+        Questions answered.
       </h2>
     </div>
-    <div class="mt-12 divide-y divide-line border-y border-line" id="faqList">
-      <div>
-        <button class="faq-btn w-full py-6 flex items-start justify-between gap-6 text-left">
-          <span class="text-lg sm:text-xl font-medium">How long does a project take?</span>
-          <span class="faq-icon mt-1 w-8 h-8 shrink-0 rounded-full grid place-items-center border border-line">+</span>
+
+    <div class="space-y-4">
+      <!-- FAQ 1 -->
+      <div class="reveal border border-line rounded-lg">
+        <button class="faq-btn w-full px-6 py-5 flex items-center justify-between text-left font-semibold hover:bg-line/50 transition-colors">
+          What's your typical project timeline?
+          <span class="faq-icon text-2xl text-muted">+</span>
         </button>
         <div class="faq-panel">
-          <p class="text-muted leading-relaxed max-w-2xl pb-6">Landing pages typically take 1 to 2 weeks. Business websites take 3 to 5 weeks. Custom systems and dashboards range from 6 to 12 weeks depending on scope. You'll get a clear timeline in the proposal.</p>
+          <div class="px-6 pb-5 text-muted leading-relaxed">
+            Most projects take 3–5 weeks from kickoff to launch. The timeline depends on complexity and how quickly you can provide feedback. I keep things moving fast without cutting corners.
+          </div>
         </div>
       </div>
-      <div>
-        <button class="faq-btn w-full py-6 flex items-start justify-between gap-6 text-left">
-          <span class="text-lg sm:text-xl font-medium">Do you redesign existing websites?</span>
-          <span class="faq-icon mt-1 w-8 h-8 shrink-0 rounded-full grid place-items-center border border-line">+</span>
+
+      <!-- FAQ 2 -->
+      <div class="reveal border border-line rounded-lg">
+        <button class="faq-btn w-full px-6 py-5 flex items-center justify-between text-left font-semibold hover:bg-line/50 transition-colors">
+          How do you price your work?
+          <span class="faq-icon text-2xl text-muted">+</span>
         </button>
         <div class="faq-panel">
-          <p class="text-muted leading-relaxed max-w-2xl pb-6">Yes. I'll audit what's already working, keep the good parts, and rebuild the rest, usually with a measurable lift in speed, clarity and conversions.</p>
+          <div class="px-6 pb-5 text-muted leading-relaxed">
+            I quote based on project scope. You get a fixed price and timeline upfront—no surprises, no surprises. I offer a free consultation to discuss your needs and provide an accurate estimate.
+          </div>
         </div>
       </div>
-      <div>
-        <button class="faq-btn w-full py-6 flex items-start justify-between gap-6 text-left">
-          <span class="text-lg sm:text-xl font-medium">Can you build custom systems, not just websites?</span>
-          <span class="faq-icon mt-1 w-8 h-8 shrink-0 rounded-full grid place-items-center border border-line">+</span>
+
+      <!-- FAQ 3 -->
+      <div class="reveal border border-line rounded-lg">
+        <button class="faq-btn w-full px-6 py-5 flex items-center justify-between text-left font-semibold hover:bg-line/50 transition-colors">
+          Can you work with my existing site?
+          <span class="faq-icon text-2xl text-muted">+</span>
         </button>
         <div class="faq-panel">
-          <p class="text-muted leading-relaxed max-w-2xl pb-6">Absolutely. Quotely is a full multi-tenant SaaS platform I built and maintain. I also build custom dashboards, booking systems, client portals and internal tools in PHP/MySQL and modern JavaScript.</p>
+          <div class="px-6 pb-5 text-muted leading-relaxed">
+            Yes. I can redesign or rebuild existing sites on WordPress, custom PHP, or other platforms. If your current site needs an upgrade or overhaul, I can help.
+          </div>
         </div>
       </div>
-      <div>
-        <button class="faq-btn w-full py-6 flex items-start justify-between gap-6 text-left">
-          <span class="text-lg sm:text-xl font-medium">Do you offer maintenance after launch?</span>
-          <span class="faq-icon mt-1 w-8 h-8 shrink-0 rounded-full grid place-items-center border border-line">+</span>
+
+      <!-- FAQ 4 -->
+      <div class="reveal border border-line rounded-lg">
+        <button class="faq-btn w-full px-6 py-5 flex items-center justify-between text-left font-semibold hover:bg-line/50 transition-colors">
+          Do you provide support after launch?
+          <span class="faq-icon text-2xl text-muted">+</span>
         </button>
         <div class="faq-panel">
-          <p class="text-muted leading-relaxed max-w-2xl pb-6">Yes, monthly care plans cover updates, backups, small changes and priority support. Most clients keep me on a retainer after launch.</p>
+          <div class="px-6 pb-5 text-muted leading-relaxed">
+            Absolutely. I provide maintenance, bug fixes, and updates after your site goes live. You're supported, not abandoned.
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ CONTACT ============ -->
-<section id="contact" class="py-24 sm:py-32">
-  <div class="mx-auto max-w-6xl px-5 sm:px-8">
-    <div class="grid lg:grid-cols-12 gap-14">
-      <div class="lg:col-span-5 reveal">
-        <div class="font-display text-sm text-muted">Contact</div>
-        <h2 class="mt-3 font-display text-4xl sm:text-6xl font-semibold tracking-tight blend-text">
-          Let's build something great.
-        </h2>
-        <p class="mt-6 text-lg text-muted leading-relaxed max-w-md">
-          Tell me a little about your business and what you'd like to build. I'll reply within 24 hours with next steps.
-        </p>
-        <div class="mt-10">
-          <a href="mailto:colorblendcreative@gmail.com" class="group flex items-center gap-4 rounded-2xl border border-line bg-white px-5 py-4 hover:border-ink/30 transition-colors">
-            <div class="w-10 h-10 rounded-xl bg-paper-2 grid place-items-center text-ink"><i data-lucide="mail" class="w-4 h-4"></i></div>
-            <div class="flex-1">
-              <div class="text-xs uppercase tracking-wider text-muted">Email</div>
-              <div class="text-sm font-medium">colorblendcreative@gmail.com</div>
-            </div>
-          </a>
-        </div>
-      </div>
+<!-- ============ CONTACT / CTA ============ -->
+<section id="contact" class="py-24 sm:py-32 px-5 sm:px-8 border-t border-line bg-ink text-white">
+  <div class="mx-auto max-w-3xl text-center">
+    <h2 class="text-4xl sm:text-5xl font-bold leading-tight mb-6">
+      Let's create<br/>something amazing.
+    </h2>
+    <p class="text-lg text-white/70 mb-10 max-w-xl mx-auto">
+      Have a project in mind? Let's talk about how I can help bring your vision to life.
+    </p>
 
-      <div class="lg:col-span-7 reveal">
-        <form id="contactForm" class="rounded-3xl border border-line bg-white p-6 sm:p-10">
-          <div class="grid sm:grid-cols-2 gap-5">
-            <div>
-              <label class="block text-xs uppercase tracking-wider text-muted mb-2">Name</label>
-              <input name="name" type="text" placeholder="Your full name" class="w-full h-12 rounded-xl border border-line bg-white px-4 text-sm outline-none focus:border-ink transition-colors" />
-            </div>
-            <div>
-              <label class="block text-xs uppercase tracking-wider text-muted mb-2">Email</label>
-              <input name="email" type="email" placeholder="you@company.com" class="w-full h-12 rounded-xl border border-line bg-white px-4 text-sm outline-none focus:border-ink transition-colors" />
-            </div>
-          </div>
-          <div class="mt-5 grid sm:grid-cols-2 gap-5">
-            <div>
-              <label class="block text-xs uppercase tracking-wider text-muted mb-2">Company</label>
-              <input name="company" type="text" placeholder="Optional" class="w-full h-12 rounded-xl border border-line bg-white px-4 text-sm outline-none focus:border-ink transition-colors" />
-            </div>
-            <div>
-              <label class="block text-xs uppercase tracking-wider text-muted mb-2">Budget</label>
-              <select name="budget" class="w-full h-12 rounded-xl border border-line bg-white px-4 text-sm outline-none focus:border-ink transition-colors">
-                <option>Under $2k</option>
-                <option>$2k to $6k</option>
-                <option>$6k to $15k</option>
-                <option>$15k+</option>
-              </select>
-            </div>
-          </div>
-          <div class="mt-5">
-            <label class="block text-xs uppercase tracking-wider text-muted mb-2">Project details</label>
-            <textarea name="message" rows="5" placeholder="What are you trying to build, and what does success look like?" class="w-full rounded-xl border border-line bg-white p-4 text-sm outline-none focus:border-ink transition-colors resize-none"></textarea>
-          </div>
-          <div class="mt-6 flex items-center justify-between gap-4 flex-wrap">
-            <div class="text-xs text-muted">By sending, you agree to be contacted about your project.</div>
-            <button type="submit" id="submitBtn" class="group inline-flex items-center gap-2 rounded-full bg-ink text-white px-6 py-3.5 text-sm font-medium hover:-translate-y-0.5 transition-all">
-              Send message →
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
+    <form id="contactForm" class="space-y-5">
+      <input type="text" name="name" placeholder="Your name" class="w-full px-5 py-3.5 rounded-lg bg-white/10 border border-white/20 text-white placeholder:text-white/50 outline-none focus:border-white/50 transition-colors" required />
+      
+      <input type="email" name="email" placeholder="your@email.com" class="w-full px-5 py-3.5 rounded-lg bg-white/10 border border-white/20 text-white placeholder:text-white/50 outline-none focus:border-white/50 transition-colors" required />
+
+      <input type="text" name="company" placeholder="Company (optional)" class="w-full px-5 py-3.5 rounded-lg bg-white/10 border border-white/20 text-white placeholder:text-white/50 outline-none focus:border-white/50 transition-colors" />
+
+      <textarea name="message" rows="5" placeholder="Tell me about your project..." class="w-full px-5 py-3.5 rounded-lg bg-white/10 border border-white/20 text-white placeholder:text-white/50 outline-none focus:border-white/50 transition-colors resize-none" required></textarea>
+
+      <button type="submit" id="submitBtn" class="w-full py-3.5 px-6 bg-white text-ink font-semibold rounded-lg hover:opacity-90 transition-opacity">
+        Send message
+      </button>
+    </form>
   </div>
 </section>
 
 </main>
 
 <!-- ============ FOOTER ============ -->
-<footer class="border-t border-line bg-paper">
-  <div class="mx-auto max-w-7xl px-5 sm:px-8 py-12 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-    <div class="flex items-center gap-3">
-      <img src="images/logo.jpg" alt="Colorblend Creative logo" class="w-8 h-8 rounded-lg object-contain" />
+<footer class="border-t border-line px-5 sm:px-8 py-12">
+  <div class="mx-auto max-w-7xl">
+    <div class="grid sm:grid-cols-3 gap-8 mb-8">
+      <!-- Brand -->
       <div>
-        <div class="text-sm font-semibold font-display">Colorblend Creative</div>
-        <div class="text-xs text-muted">Websites & systems for growing businesses.</div>
+        <div class="font-semibold mb-2">Colorblend Creative</div>
+        <p class="text-sm text-muted">Web design & business systems for growing businesses.</p>
+      </div>
+
+      <!-- Links -->
+      <div>
+        <div class="font-semibold text-sm mb-4">Links</div>
+        <nav class="space-y-2 text-sm text-muted">
+          <a href="#work" class="block hover:text-ink">Work</a>
+          <a href="#services" class="block hover:text-ink">Services</a>
+          <a href="#about" class="block hover:text-ink">About</a>
+          <a href="#faq" class="block hover:text-ink">FAQ</a>
+        </nav>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <div class="font-semibold text-sm mb-4">Contact</div>
+        <div class="space-y-2 text-sm text-muted">
+          <a href="mailto:colorblendcreative@gmail.com" class="block hover:text-ink">Email</a>
+          <a href="#" class="block hover:text-ink">Twitter</a>
+          <a href="#" class="block hover:text-ink">LinkedIn</a>
+        </div>
       </div>
     </div>
-    <nav class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted">
-      <a href="#work" class="hover:text-ink">Work</a>
-      <a href="#services" class="hover:text-ink">Services</a>
-      <a href="#about" class="hover:text-ink">About</a>
-      <a href="#process" class="hover:text-ink">Process</a>
-      <a href="#reviews" class="hover:text-ink">Reviews</a>
-      <a href="#faq" class="hover:text-ink">FAQ</a>
-      <a href="#contact" class="hover:text-ink">Contact</a>
-    </nav>
-    <div class="flex items-center gap-3 text-muted">
-      <a href="mailto:colorblendcreative@gmail.com" aria-label="Email" class="hover:text-ink"><i data-lucide="mail" class="w-4 h-4"></i></a>
-    </div>
-  </div>
-  <div class="border-t border-line">
-    <div class="mx-auto max-w-7xl px-5 sm:px-8 py-5 text-xs text-muted flex flex-col sm:flex-row items-center justify-between gap-2">
+
+    <div class="border-t border-line pt-8 text-xs text-muted flex flex-col sm:flex-row justify-between items-center gap-4">
       <div>© <span id="year"></span> Colorblend Creative. All rights reserved.</div>
-      <div>Colorblend Creative</div>
+      <div>Designed & built by Colorblend</div>
     </div>
   </div>
 </footer>
 
-<!-- EmailJS SDK: needed once you wire up the contact form. See setup notes provided separately. -->
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 
 <script>
   lucide.createIcons();
-
   document.getElementById('year').textContent = new Date().getFullYear();
 
   // Mobile menu toggle
   const menuBtn = document.getElementById('menuBtn');
   const mobileMenu = document.getElementById('mobileMenu');
-  menuBtn.addEventListener('click', () => {
+  menuBtn?.addEventListener('click', () => {
     mobileMenu.classList.toggle('hidden');
   });
 
-  // Nav scroll background
+  // Nav scroll effect
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => {
     if (window.scrollY > 8) {
-      nav.classList.add('bg-paper/85', 'backdrop-blur-md', 'border-b', 'border-line');
+      nav.classList.add('border-b');
     } else {
-      nav.classList.remove('bg-paper/85', 'backdrop-blur-md', 'border-b', 'border-line');
+      nav.classList.remove('border-b');
     }
   });
 
@@ -725,33 +510,6 @@
   }, { threshold: 0.15 });
   revealEls.forEach((el) => io.observe(el));
 
-  // Reviews carousel scroll buttons
-  const reviewsTrack = document.getElementById('reviewsTrack');
-  const reviewsPrev = document.getElementById('reviewsPrev');
-  const reviewsNext = document.getElementById('reviewsNext');
-  if (reviewsTrack && reviewsPrev && reviewsNext) {
-    const scrollAmount = () => reviewsTrack.querySelector('div')?.offsetWidth + 20 || 320;
-    reviewsPrev.addEventListener('click', () => reviewsTrack.scrollBy({ left: -scrollAmount(), behavior: 'smooth' }));
-    reviewsNext.addEventListener('click', () => reviewsTrack.scrollBy({ left: scrollAmount(), behavior: 'smooth' }));
-  }
-
-  // Auto-scroll reviews, pause on hover (laptop) or touch (phone)
-  if (reviewsTrack) {
-    let autoScroll = true;
-    function tick() {
-      if (autoScroll) {
-        reviewsTrack.scrollLeft += 0.5;
-        if (reviewsTrack.scrollLeft >= reviewsTrack.scrollWidth - reviewsTrack.clientWidth - 1) {
-          reviewsTrack.scrollLeft = 0;
-        }
-      }
-      requestAnimationFrame(tick);
-    }
-    requestAnimationFrame(tick);
-    ['mouseenter', 'touchstart'].forEach(evt => reviewsTrack.addEventListener(evt, () => autoScroll = false, { passive: true }));
-    ['mouseleave', 'touchend'].forEach(evt => reviewsTrack.addEventListener(evt, () => autoScroll = true, { passive: true }));
-  }
-
   // FAQ accordion
   document.querySelectorAll('.faq-btn').forEach((btn) => {
     btn.addEventListener('click', () => {
@@ -762,22 +520,21 @@
       document.querySelectorAll('.faq-panel.open').forEach((p) => {
         p.classList.remove('open');
         p.previousElementSibling.querySelector('.faq-icon').textContent = '+';
-        p.previousElementSibling.querySelector('.faq-icon').classList.remove('bg-ink', 'text-white', 'border-ink');
       });
 
       if (!isOpen) {
         panel.classList.add('open');
         icon.textContent = '−';
-        icon.classList.add('bg-ink', 'text-white', 'border-ink');
       }
     });
   });
 
+  // Contact form
   const form = document.getElementById('contactForm');
   const submitBtn = document.getElementById('submitBtn');
   const MAILER_ENDPOINT = 'https://colorblend-portfolio.vercel.app/api/send-mail';
 
-  form.addEventListener('submit', function (e) {
+  form?.addEventListener('submit', function (e) {
     e.preventDefault();
     submitBtn.textContent = 'Sending...';
     submitBtn.disabled = true;
@@ -785,8 +542,7 @@
     const payload = {
       name: form.name.value,
       email: form.email.value,
-      company: form.company.value,
-      budget: form.budget.value,
+      company: form.company.value || 'N/A',
       message: form.message.value,
     };
 
